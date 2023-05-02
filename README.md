@@ -1,7 +1,7 @@
 # Projeto Site PHP
  Projeto de um site com PHP da disciplina Eletiva I Programação Web da Fatec
 
- ![Logo PHP](./Site/Imagens/logo_php.png)
+ ![Logo PHP](./arquivos_site/Imagens/logo_php.png)
 
  O site será criado para testar os conhecimentos adquiridos na disciplica de PHP da Fatec.
  

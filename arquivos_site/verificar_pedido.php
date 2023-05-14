@@ -3,7 +3,7 @@
     <h1>Validar Pedido</h1>
     <hr>
     <br>
-    <div class="col-2 m-auto text-center"> <!-- temos que centrarlizar direito -->
+    <div class="col-8 m-auto text-center"> <!-- temos que centrarlizar direito -->
         <form action="" method="post">
             <table class="table">
                 <thead>

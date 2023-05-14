@@ -27,6 +27,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contato.php">Contato</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pedidos.php">Pedidos</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="cardapio.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Cardápio
@@ -38,7 +41,6 @@
                             <li><a class="dropdown-item" href="cardapio.php#pizzas">Pizzas</a></li>
                             <li><a class="dropdown-item" href="cardapio.php#bebidas">Bebidas</a></li>
                             <li><a class="dropdown-item" href="cardapio.php#sobremesas">Sobremesas</a></li>
-
                         </ul>
                     </li>
                 </ul>

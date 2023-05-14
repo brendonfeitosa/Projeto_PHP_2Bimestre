@@ -1,6 +1,6 @@
 <footer>
-    <br><br>
-    <div class="text-center align-text-middle" style="background-color: #0D6EFD; padding: 15px 0; margin-bottom: 0;color: white;">
+    <br>
+    <div class="text-center align-text-middle" style="padding: 15px 0; margin-bottom: 0; background-color: #008E9B; color: white">
         &copy; <em>2023 - Curso de PHP Fatec de Presidente Prudente/SP</em>
     </div>
 </footer>

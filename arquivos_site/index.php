@@ -1,5 +1,4 @@
 <?php require_once("header.php"); ?>
-<br><br><br>
 
 <!-- carrosel -->
 <div id="carouselExampleIndicators" class="carousel slide col-11 m-auto" data-bs-ride="true">

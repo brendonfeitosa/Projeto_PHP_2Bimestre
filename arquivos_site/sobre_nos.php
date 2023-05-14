@@ -14,5 +14,6 @@
         <h2>Porque escolhemos esta cidade?</h2>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis amet nemo repellat iusto ducimus voluptatum aut laudantium modi inventore assumenda quaerat sint dignissimos sapiente ipsa aliquid quis, eum quidem aliquam.</p>
     </div>
+    <p>Fale conosco: <a href="contato.php"><i class="bi bi-telephone-outbound-fill">Contato</i></a></p>
 </div>
 <?php require_once("footer.php") ?>

@@ -1,0 +1,23 @@
+*{
+
+    margin: 0;
+    padding: 0;
+    
+}
+
+main{
+padding: 8px;
+margin-left: auto;
+margin-right: auto;
+width: 90%;
+height: 100%;
+
+}
+
+section{
+    
+    margin-right: auto;
+    width: 320px;
+    height: 360px;
+    
+}

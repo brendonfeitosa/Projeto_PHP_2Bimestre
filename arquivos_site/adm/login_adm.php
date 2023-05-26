@@ -49,10 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2>Login Administrativo</h2>
         <p>Por favor insira os dados pra realizar o Login</p>
         <hr>
-        <section>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <section class="form_adm">
+            <form ation="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group">
-                    <label>Usuário:</label>
+                    <label>Email:</label>
                     <input type="text" name="email" required class="form-control">
                     <span class="invalid-feedback"></span>
                 </div>

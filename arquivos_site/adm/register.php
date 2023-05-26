@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($data['num_users'] > 0) {
             $username_err = "usuário ja cadastrado";
         } else {
-            print_r($_POST);
+            //print_r($_POST);
             $email = $_POST['email'];
             $nome= $_POST['nome'];
             $tipo = "adm";
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty($username_err) && empty($password_err)) {
 
         $sql = "insert into user(nome,email,senha,user_tipo) values ('{$nome}','{$email}', '{$senha}','{$tipo}');";
-        echo $sql;
+        //echo $sql;
         $result = $conn->query($sql);
 
         if (!$result) {

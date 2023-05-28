@@ -4,6 +4,7 @@ require_once("../utils/connetion.php");
 require("./header.inc.php");
 if (!isset($_SESSION['email']) || $_SESSION['email'] != true) {
     header("Location: login_adm.php");
+   
 }
 $tpId = "";
 $tpNome = "";
@@ -131,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 
 <hr>
+
 <section class="form_tp">
     <h3>Gerenciamento de tipos</h3>
 

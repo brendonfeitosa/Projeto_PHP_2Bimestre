@@ -1,8 +1,12 @@
 <?php
-require("header.inc.php");
-
 require_once("../utils/connetion.php");
-$cadastro_err = "";
+require("./header.inc.php");
+if (!isset($_SESSION['email']) || $_SESSION['email'] != true) {
+    header("Location: login_adm.php");
+    echo "logado";
+}
+
+$msg_err = "";
 $sql = "";
 $result = "";
 $data = "";
@@ -19,7 +23,7 @@ $peso = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // print_r($_POST);
-
+    $cod = $_POST['cod'];
     $nome = $_POST['pnome'];
     $promo = 0;
     $tp = $_POST['ptipo'];
@@ -30,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['promo'])) {
         $promo = $_POST['promo'];
     }
-    if ($cod == 0) {
+    if ($cod === 0) {
+        echo $cod." entro";
         //$sql = "insert into produto(tipo_cod,nome,descricao,preco,promo,image_url,peso) values($tp,'$nome','$desc',$preco,$promo,'$img',$peso);"; 
         $sql = "select count(*) as produtos from produto where nome = lower('{$nome}');";
 
@@ -45,24 +50,34 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             // echo $sql;
             $result = $conn->query($sql);
             if (!$result) {
-                $cadastro_err = "<span class='alert alert-warning'> não foi possivel cadastro</span>";
-            }else{
-                header("Location: produto.php");
+                $msg_err = "<span class='alert alert-warning'> não foi possivel cadastro</span>";
             }
+            header("Location: produto.php?msg=$msg_err");
         }
+
+    }else if($cod > 1){
+        
+        
+
+        $sql = "update produto set tipo_cod =$tp ,nome ='$nome' ,descricao = '$desc' ,preco = $preco ,promo = $promo,image_url = '$img', peso = $peso ";
+        $sql .=" where tipo_cod = {$tp};";
+         //echo $sql;   
+            $result = $conn->query($sql);
+          
+            if (!$result) {
+                
+                $msg_err = "<span class='alert alert-warning'> não foi possivel alterar o registro</span>";
+            }
+
+            header("Location: produto.php?msg=$msg_err");
 
     }
 }
 if (isset($_GET['cod'])) {
     $cod = $_GET['cod'];
-
     $sql = "select * from produto p, tipo_produto tp where tp.tipo_cod = p.tipo_cod and p.codigo = {$cod};";
-
     $result = $conn->query($sql);
-
     $row = mysqli_fetch_assoc($result);
-
-
     $nome = $row['nome'];
     $promo = $row['promo'];
     $tp = $row['tipo_cod'];
@@ -74,7 +89,6 @@ if (isset($_GET['cod'])) {
 
 ?>
 
-<br />
 <h3>Gerenciamento de Produtos</h3>
 <form action="" method="post">
 
@@ -177,7 +191,7 @@ if (isset($_GET['cod'])) {
 
     </section>
 
-
+<hr>
     <section id="container">
 
 
@@ -193,7 +207,7 @@ if (isset($_GET['cod'])) {
                     <th scope="col">Foto</th>
                     <th scope="col">Peso</th>
                     <th scope="col">Preço</th>
-                    <th scope="col">Editar/Excluir</th>
+                    <th scope="col" class="text-center">Editar/Excluir</th>
                 </tr>
             </thead>
 
@@ -210,20 +224,18 @@ if (isset($_GET['cod'])) {
 
                 ?>
 
-                    <tr>
+                    <tr class="">
                         <th scope="row"><?= $prod['codigo'] ?></th>
-                        <td><?= $prod['promo'] == 1 ? 'Sim' : 'Não' ?></td>
+                        <td class=""><?= $prod['promo'] == 1 ? 'Sim' : 'Não' ?></td>
                         <td><?= $prod['nome'] ?></td>
                         <td><?= $prod['tipo_nome'] ?></td>
                         <td><?= $prod['descricao'] ?></td>
                         <td><img src="<?= $prod['image_url'] ?>" width="80px" height="60px" alt=""></td>
                         <td>R$ <?= number_format($prod['preco'], 2, ',', '.') ?></td>
                         <td><?= number_format($prod['peso'], 3, ',', '.'); ?>Kg</td>
-                        <td>
+                        <td >
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
 
-                                <!--  <input type="submit" name="pro" class="btn btn-primary" value="Editar" />
- -->
 
                                 <button class="btn btn-primary">
                                     <a style="color:white; text-decoration: none;" href="produto.php?cod=<?= $pcod ?>">Editar</a>

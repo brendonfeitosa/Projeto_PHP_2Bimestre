@@ -20,7 +20,7 @@ require_once("../utils/connetion.php");
 <main>
 
     <header>
-     
+
         <nav>
             <ul class="nav justify-content-center">
                 <li class="nav-item">
@@ -50,4 +50,10 @@ require_once("../utils/connetion.php");
             </ul>
 
         </nav>
+        <?php
+        if (isset($_SESSION['login_adm'])) { ?>
+
+            <div class="text-info text-end">Ola <?= $_SESSION['nome'] ?></div>
+        <?php } ?>
+
     </header>

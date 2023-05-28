@@ -186,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <!-- <input type="submit" name="btn_act" class="btn btn-primary" value="Editar" /> -->
                             <button class="btn btn-danger" <?=$disabled?>>
                              <a style="color:white; text-decoration: none;" 
-                                href="delete.php?id=<?=$stp?>&tb=tipo_produto&field=0">Excluir
+                                href="delete.php?id=<?=$stp?>&tb=0">Excluir
                             </a>
 
                            </button>
@@ -233,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                            
                            <button class="btn btn-danger" <?=$disabled2?>>
                              <a style="color:white; text-decoration: none;"
-                              href="delete.php?id=<?=$stp2?>&tb=tipo_pagamento&field=1">Excluir</a>
+                              href="delete.php?id=<?=$stp2?>&tb=1">Excluir</a>
 
                            </button>
                            <!--  <input type="submit" id="dl" name="btn_del" <$disabled2 ?> class="btn btn-danger" value="Excluir" /> -->

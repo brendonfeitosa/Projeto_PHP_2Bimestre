@@ -4,21 +4,26 @@
     padding: 0;
     
 }
+html{
+  
+}
 
 main{
     
+
 padding: 8px;
 margin-left: auto;
 margin-right: auto;
-width: 90%;
-/* height: 87vh; */
+
+
+
 
 }
 
 section{
     margin-right: auto;
     
-    height: 360px;
+   /*  height: 360px; */
     
    
 }
@@ -33,3 +38,23 @@ section{
 
 }
 
+#container {
+   /*  width: 80%; */
+    aspect-ratio: 4/1;
+    padding: 40px 0;
+    margin: auto;
+   /*  border: solid black 2px; */
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
+
+  .scroll_pro {
+   /*  background-color: lightblue; */
+    
+    aspect-ratio: 4/1;
+  }
+  .reset_width{
+
+    width:fit-content;
+  }

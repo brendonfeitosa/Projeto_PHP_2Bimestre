@@ -43,7 +43,10 @@ a .reset_decor:hover{
 
 }
 
-.cores{
+.container_card{
 
-    color: aqua;
+    display: flex;
+    flex-direction: row;
+
+    width: 100px;
 }

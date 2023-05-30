@@ -17,6 +17,7 @@ require_once("../utils/connetion.php");
 
 
 </head>
+<body>
 <main>
 
     <header>

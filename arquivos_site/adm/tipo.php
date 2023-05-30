@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Produto</td>
+                    <td>Tipo Produto</td>
                     <td>
                         <input class="form-control" name="tpPro" id="tpPro" value="<?= $snm ?>" type="text" placeholder="" />
 
@@ -200,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>Pagamento</td>
+                    <td>Tipo Pagameneto</td>
                     <td>
 
                         <input class="form-control" name="tpPag" value="<?=$snm2?>" type="text" placeholder="">

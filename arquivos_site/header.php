@@ -10,7 +10,7 @@
 
 <body>
     <!-- navbar -->
-    <nav class="navbar position-fixed col-12 navbar-expand-lg navbar-dark bg-dark" style="z-index: 999;">
+    <nav class="navbar position-fixed col-12 navbar-expand-lg navbar-dark bg-#66260a" style="z-index: 999;">
         <div class="container-fluid col-11 m-auto">
             <a class="navbar-brand" href="#"><img src="./img/logo_size_invertg40.jpg" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,4 +1,55 @@
-*{
-    padding: 0;
-    margin: 0;
+
+.bgg{
+    background-color: red;
 }
+.centralizar{
+ 
+    margin-left: auto;
+    margin-right: auto;
+}
+.reset_decor{
+
+    text-decoration: none;
+    color: white;
+}
+.font_menor{
+    font-size: 0.78rem;
+}
+.reset_decor:visited{
+
+    text-decoration: none;
+    color: white;
+    padding: 8px;
+}
+<<<<<<< HEAD
+=======
+
+a .reset_decor:hover{
+    
+    text-decoration: none;
+    color: white;
+    padding: 8px;
+
+    cursor: pointer;
+
+}
+.form_login{
+    padding: 8px;
+    width: 40%;
+}
+
+.nm_sessao{
+    margin-left: auto;
+    width: 150px;
+    text-align: end;
+
+}
+
+.container_card{
+
+    display: flex;
+    flex-direction: row;
+
+    width: 100px;
+}
+>>>>>>> main

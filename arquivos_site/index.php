@@ -34,35 +34,74 @@
 <br><br>
 
 <!-- cards -->
-<h4 class="text-center">ALGUNS DE NOSSOS PRODUTOS</h4>
 
+<h4 class="text-center">ALGUNS DE NOSSOS PRODUTOS</h4>
+<form></form>
 <section class="container_card" >
-    <div class="card" style="width: 18rem;">
+    <div class="card m-2" style="width: 18rem;">
         <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
         <div class="card-body">
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
-    </div> 
-    <div class="card" style="width: 18rem;">
+
+    </div>
+    <div class="card m-2" style="width: 18rem;">
         <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
         <div class="card-body">
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
-    </div> 
-    <div class="card" style="width: 18rem;">
+
+    </div>
+    <div class="card m-2" style="width: 18rem;">
         <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
         <div class="card-body">
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
-    </div> 
-    <div class="card" style="width: 18rem;">
+
+    </div>
+    <div class="card m-2" style="width: 18rem;">
         <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
         <div class="card-body">
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
-    </div> 
+
+    </div>
+    <div class="card m-2" style="width: 18rem;">
+        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+
+    </div>
+    <div class="card m-2" style="width: 18rem;">
+        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+
+    </div>
+    <div class="card m-2" style="width: 18rem;">
+        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+
+    </div>
+    <div class="card m-2" style="width: 18rem;">
+        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+
+    </div>
+    
+   
+    
 
 </section >
+<section>
+    
+</section>
 
 <hr>
 

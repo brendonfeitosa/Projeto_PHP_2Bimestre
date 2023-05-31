@@ -1,29 +1,32 @@
-
-.bgg{
+.bgg {
     background-color: red;
 }
-.centralizar{
- 
+
+.centralizar {
+
     margin-left: auto;
     margin-right: auto;
 }
-.reset_decor{
+
+.reset_decor {
 
     text-decoration: none;
     color: white;
 }
-.font_menor{
+
+.font_menor {
     font-size: 0.78rem;
 }
-.reset_decor:visited{
+
+.reset_decor:visited {
 
     text-decoration: none;
     color: white;
     padding: 8px;
 }
 
-a .reset_decor:hover{
-    
+a .reset_decor:hover {
+
     text-decoration: none;
     color: white;
     padding: 8px;
@@ -31,22 +34,26 @@ a .reset_decor:hover{
     cursor: pointer;
 
 }
-.form_login{
+
+.form_login {
     padding: 8px;
     width: 40%;
 }
 
-.nm_sessao{
+.nm_sessao {
     margin-left: auto;
     width: 150px;
     text-align: end;
 
 }
 
-.container_card{
-
+.container_card {
     display: flex;
-    flex-direction: row;
-
-    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    width: 95%;
+    align-items: center;
+    justify-content: space-around;
+    
 }

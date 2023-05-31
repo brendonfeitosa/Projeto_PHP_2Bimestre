@@ -1,5 +1,24 @@
-<?php require_once("header.php"); ?>
-<div class="col-11 m-auto">
+<?php
+require_once("header.php");
+$display = "";
+$aviso="";
+if (!isset($_SESSION['login']) || $_SESSION['login'] != true) {
+
+  $display = "none";
+
+  
+}
+
+
+?>
+<div style="height: 73.5vh;">
+    <p>
+
+        Para visualizar os pedidos voce precisa fazer o <a href="login.php">login...</a>
+    </p>
+
+</div>
+<div class="col-11 m-auto" style="display: <?=$display?>;">
     <h1>Histórico de Pedidos</h1>
     <hr>
     <br>

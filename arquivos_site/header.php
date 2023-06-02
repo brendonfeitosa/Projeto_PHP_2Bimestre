@@ -16,7 +16,7 @@ require_once("utils/connetion.php");
 
 <body>
     <!-- navbar -->
-    <nav class="navbar position-fixed col-12 navbar-expand-lg navbar-dark bg-#66260a" style="z-index: 999;">
+    <nav class="navbar position-fixed col-12 navbar-expand-lg " style="z-index: 999;">
         <div class="container-fluid col-11 m-auto">
             <a class="navbar-brand" href="#"><img src="./img/logo_size_invertg40.jpg" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,50 +38,23 @@ require_once("utils/connetion.php");
                     <li class="nav-item">
                         <a class="nav-link" href="pedidos.php">Pedidos</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="cardapio.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Cardápio
-                        </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cardapioteste.php">Cardapio</a>
+                    </li>
+                   
+                   <!--  <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="cardapio.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cardápio</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="cardapio.php">Cardápio</a></li>
-                            <hr>
                             <li><a class="dropdown-item" href="cardapio.php#massas">Massas</a></li>
                             <li><a class="dropdown-item" href="cardapio.php#pizzas">Pizzas</a></li>
                             <li><a class="dropdown-item" href="cardapio.php#bebidas">Bebidas</a></li>
                             <li><a class="dropdown-item" href="cardapio.php#sobremesas">Sobremesas</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
-        <nav class="navbar bg-body-tertiary bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand"></a>
-                <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </nav>
-        </div>
-<<<<<<< HEAD
+           </div>
         
-=======
-
-        <?php
-        if (isset($_SESSION['login']) == true) { ?>
-            <div class="font_menor reset_decor nm_sessao">
-                <?= substr($_SESSION['nome'], 0, 9) ?> |
-                <a class="reset_decor" href="logout.php">Sair &nbsp;</a>
-            </div>
-        <?php } else { ?>
-            <div class="font_menor reset_decor nm_sessao">
-
-                <a class="reset_decor" href="login.php ">Login</a>&nbsp;&nbsp;
-            </div>
-        <?php }
-        ?>
-        </p>
->>>>>>> main
     </nav>
     
     <br><br><br><br>

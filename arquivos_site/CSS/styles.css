@@ -52,8 +52,41 @@ a .reset_decor:hover {
     margin-left: auto;
     margin-right: auto;
     flex-wrap: wrap;
-    width: 95%;
+    width: 90%;
     align-items: center;
-    justify-content: space-around;
+    justify-content: start;
     
 }
+.n-pedido{
+    width: 15px;
+    height: 8px;
+    border: none;
+    text-align: center;
+    font-size: 0.6rem;
+    color: #26be00;
+    font-weight: bold;
+    
+}
+.bts{
+    margin-left: auto;
+    margin-top: -25px;
+    z-index: 5;
+}
+
+.btn2{
+    margin-top: 0;
+    padding: 0;
+    width: 16px;
+    right: 16px;
+    border: none;
+    background:none;
+}
+.img_card{
+    
+    max-height:180px;
+  
+    width: 254px;
+    right: 254px;
+    object-fit: cover;
+
+} 

@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $promo = $_POST['promo'];
     }
     if ($cod == 0) {
-        echo $cod." entro";
+        //echo $cod." entro";
         /* $sql = "insert into produto(tipo_cod,nome,descricao,preco,promo,image_url,peso) values($tp,'$nome','$desc',$preco,$promo,'$img',$peso);";  */
         $sql = "select count(*) as produtos from produto where nome = lower('{$nome}');";
 
@@ -187,7 +187,6 @@ if (isset($_GET['cod'])) {
             </tbody>
 
         </table>
-
 
     </section>
 

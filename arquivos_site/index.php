@@ -32,77 +32,102 @@
 </div>
 
 <br><br>
+<?php
+$sql = "select * from produto ";
+
+$result = $conn->query($sql);
+
+
+
+
+?>
 
 <!-- cards -->
 
 <h4 class="text-center">ALGUNS DE NOSSOS PRODUTOS</h4>
-<form></form>
-<section class="container_card" >
-    <div class="card m-2" style="width: 18rem;">
-        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+<form action="" method="post">
+    <section class="container_card">
 
-    </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+        <?php
+        while ($data = mysqli_fetch_array($result)) { ?>
 
-    </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
 
-    </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+            <div class="card m-2" style="width: 16rem;">
+                <h6><?= $data['nome'] ?></h6>
+                <div>
 
-    </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+                    <img src="<?= $data['image_url'] ?>"
+                    class="img_card" alt="...">
+                </div>
+                <p class="card-text"><?= substr($data['descricao'],0,40) ?></p>
+                <div class="bts">
+                    <button type="button" class="btn2" name="btn" id="subtract">
+                        <img src="./public/icons/icons8-menos-96.svg" class="tt" width="10" alt="">
+                    </button>
+                    <input class="n-pedido" readonly type="text" id="<?= $data['codigo'] ?>" name="<?= $data['codigo'] ?>" value="" size="2">
+                    <button type="button" class="btn2" id="add" value="?" name="btn" onclick="addCarrinho();">
+                        <img src="./public/icons/mais.svg" width="10" alt="">
+                    </button>
+                </div>
+            </div>
 
-    </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
 
-    </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
 
-    </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="https://i2.wp.com/files.agro20.com.br/uploads/2020/03/comidabrasileira3.jpg?fit=1024%2C585&ssl=1" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+        <?php } ?>
 
-    </div>
-    
-   
-    
 
-</section >
-<section>
-    
-</section>
+        <script type="text/javascript">
+            function addCarrinho(id) {
+                // alert(cp);
 
+                alert(id);
+                alert(document.getElementById(id).value)
+
+                let x = document.getElementById(id).value;
+                if (x == "") {
+
+                    document.getElementById(id).value = 1;
+                } else {
+
+                    document.getElementById(id).value = parseInt(x) + 1;
+                }
+
+            }
+            /* var btn = document.getElementById('add');
+            btn.onclick = function() {
+
+
+                //alert(this.name); // alerta 'seuid'
+                let x = document.getElementById('pro').value;
+                if (x == "") {
+
+                    document.getElementById('pro').value = 1;
+                } else {
+
+                    document.getElementById('pro').value = parseInt(x) + 1;
+                }
+
+            }
+
+            var btn = document.getElementById('subtract');
+            btn.onclick = function() {
+
+
+                //alert(this.name); // alerta 'seuid'
+                let x = document.getElementById('pro').value;
+                if (x > 0) {
+
+                    document.getElementById('pro').value = parseInt(x) - 1;
+                }
+
+            } */
+        </script>
+
+
+
+    </section>
+
+</form>
 <hr>
 
 

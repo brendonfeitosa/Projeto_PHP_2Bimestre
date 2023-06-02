@@ -1,29 +1,32 @@
-
-.bgg{
+.bgg {
     background-color: red;
 }
-.centralizar{
- 
+
+.centralizar {
+
     margin-left: auto;
     margin-right: auto;
 }
-.reset_decor{
+
+.reset_decor {
 
     text-decoration: none;
     color: white;
 }
-.font_menor{
+
+.font_menor {
     font-size: 0.78rem;
 }
-.reset_decor:visited{
+
+.reset_decor:visited {
 
     text-decoration: none;
     color: white;
     padding: 8px;
 }
 
-a .reset_decor:hover{
-    
+a .reset_decor:hover {
+
     text-decoration: none;
     color: white;
     padding: 8px;
@@ -31,22 +34,59 @@ a .reset_decor:hover{
     cursor: pointer;
 
 }
-.form_login{
+
+.form_login {
     padding: 8px;
     width: 40%;
 }
 
-.nm_sessao{
+.nm_sessao {
     margin-left: auto;
     width: 150px;
     text-align: end;
 
 }
 
-.container_card{
-
+.container_card {
     display: flex;
-    flex-direction: row;
-
-    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    width: 90%;
+    align-items: center;
+    justify-content: start;
+    
 }
+.n-pedido{
+    width: 15px;
+    height: 8px;
+    border: none;
+    text-align: center;
+    font-size: 0.6rem;
+    color: #26be00;
+    font-weight: bold;
+    
+}
+.bts{
+    margin-left: auto;
+    margin-top: -25px;
+    z-index: 5;
+}
+
+.btn2{
+    margin-top: 0;
+    padding: 0;
+    width: 16px;
+    right: 16px;
+    border: none;
+    background:none;
+}
+.img_card{
+    
+    max-height:180px;
+  
+    width: 254px;
+    right: 254px;
+    object-fit: cover;
+
+} 

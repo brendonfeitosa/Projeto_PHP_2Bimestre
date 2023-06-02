@@ -16,7 +16,7 @@ require_once("utils/connetion.php");
 
 <body>
     <!-- navbar -->
-    <nav class="navbar position-fixed col-12 navbar-expand-lg navbar-dark bg-dark" style="z-index: 999;">
+    <nav class="navbar position-fixed col-12 navbar-expand-lg navbar-dark bg-#66260a" style="z-index: 999;">
         <div class="container-fluid col-11 m-auto">
             <a class="navbar-brand" href="#"><img src="./img/logo_size_invertg40.jpg" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,19 @@ require_once("utils/connetion.php");
                     </li>
                 </ul>
             </div>
+        <nav class="navbar bg-body-tertiary bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand"></a>
+                <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
         </div>
+<<<<<<< HEAD
+        
+=======
 
         <?php
         if (isset($_SESSION['login']) == true) { ?>
@@ -68,5 +80,7 @@ require_once("utils/connetion.php");
         <?php }
         ?>
         </p>
+>>>>>>> main
     </nav>
+    
     <br><br><br><br>

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php
 require_once("header.php");
 $display = "";
@@ -20,6 +21,11 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != true) {
 </div>
 <div class="col-11 m-auto" style="display: <?=$display?>;">
     <h1>Histórico de Pedidos</h1>
+=======
+<?php require_once("header.php"); ?>
+<div class="col-11 m-auto">
+    <h1 class="text-center">Histórico de Pedidos</h1>
+>>>>>>> Stashed changes
     <hr>
     <br>
     <div class="col-8 m-auto text-center"> <!-- temos que centrarlizar direito -->

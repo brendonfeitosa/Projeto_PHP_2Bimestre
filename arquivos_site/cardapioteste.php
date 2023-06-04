@@ -68,22 +68,16 @@ mysqli_close($conn);
                 </thead>
                 <tbody>
                     <tr>
-                        <td scope="row" value="<?= $nome ?>"><?= $nome ?></td>
-                        <td value="<?= $qtd ?>"><?= $qtd ?></td>
-                        <td value="<?= $vl_unitario ?>">R$ <?= number_format($vl_unitario, 2, ',', '.') ?></td>
-                        <td value="<?= $vl_total ?>">R$ <?= number_format($vl_total, 2, ',', '.') ?></td>
+                        <td scope="row"><?= $nome ?></td>
+                        <td><?= $qtd ?></td>
+                        <td>R$ <?= number_format($vl_unitario, 2, ',', '.') ?></td>
+                        <td>R$ <?= number_format($vl_total, 2, ',', '.') ?></td>
                     </tr>
                     <tr>
-                        <td scope="row" value="<?= $nome ?>"><?= $nome ?></td>
-                        <td value="<?= $qtd ?>"><?= $qtd ?></td>
-                        <td value="<?= $vl_unitario ?>">R$ <?= number_format($vl_unitario, 2, ',', '.') ?></td>
-                        <td value="<?= $vl_total ?>">R$ <?= number_format($vl_total, 2, ',', '.') ?></td>
-                    </tr>
-                    <tr>
-                        <td scope="row" value="<?= $nome ?>"><?= $nome ?></td>
-                        <td value="<?= $qtd ?>"><?= $qtd ?></td>
-                        <td value="<?= $vl_unitario ?>">R$ <?= number_format($vl_unitario, 2, ',', '.') ?></td>
-                        <td value="<?= $vl_total ?>">R$ <?= number_format($vl_total, 2, ',', '.') ?></td>
+                        <td scope="row"><?= $nome ?></td>
+                        <td><?= $qtd ?></td>
+                        <td>R$ <?= number_format($vl_unitario, 2, ',', '.') ?></td>
+                        <td>R$ <?= number_format($vl_total, 2, ',', '.') ?></td>
                     </tr>
                 </tbody>
             </table>

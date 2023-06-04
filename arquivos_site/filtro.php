@@ -42,7 +42,7 @@
                     </div>
                 <?php }
             } else {
-                echo '<p class="text-center">Produto não encontrado.</p>';
+                echo '<p class="text-center"><h3>Produto não encontrado.</h3></p>';
             }
 
             // Fechar a conexão com o banco de dados
@@ -51,7 +51,8 @@
     }
     ?>
 </form>
-<form class="ml-3 d-inline-block" method="GET">
+<form class="ml-3 d-inline-block " method="GET">
+
         <select class="form-select form-select-sm" name="categoria" onchange="this.form.submit()">
             <option value="">Selecione a categoria</option>
             <?php
@@ -74,7 +75,6 @@
                     echo "<option value='$tipoCod'>$tipoNome</option>";
                 }
             }
-
             ?>
         </select>
     </form>
@@ -84,7 +84,8 @@
     if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
         $categoria = $_GET["categoria"];
 
- 
+        // Configurações de conexão com o banco de dados
+      
         // Conexão com o banco de dados
         $conn;
         if ($conn->connect_error) {
@@ -95,7 +96,7 @@
         $sql1 = "SELECT * FROM Produto WHERE tipo_cod = '$categoria'";
         $result = $conn->query($sql1);
 
-        // Exibição dos resultados 
+        // Exibição dos resultados da pesquisa
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) { ?>
                 <div class="card text-center bg-light m-2 d-flex " style="width: 16rem;">
@@ -107,7 +108,8 @@
                 </div>
             <?php }
         } else {
-            echo "Nenhum resultado encontrado.";
+            
+            echo '<p class="text-center"><h3>Produto não encontrado.</h3></p>';
         }
 
         // Fechar a conexão com o banco de dados

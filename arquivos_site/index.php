@@ -20,7 +20,7 @@
         </div>
 
         <!-- The slideshow/carousel -->
-        <div class="carousel-inner">
+        <div class="carousel-inner" style="margin-left: auto; margin-right: auto;">
             <div class="carousel-item active">
                 <img src="./img/pizza1.jpg" alt="Los Angeles" class="d-block img_banner">
             </div>

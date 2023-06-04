@@ -84,7 +84,7 @@
     if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
         $categoria = $_GET["categoria"];
 
-        // Configurações de conexão com o banco de dados
+        
       
         // Conexão com o banco de dados
         $conn;
@@ -112,7 +112,7 @@
             echo '<p class="text-center"><h3>Produto não encontrado.</h3></p>';
         }
 
-        // Fechar a conexão com o banco de dados
+        
         $conn->close();
     }
     ?>

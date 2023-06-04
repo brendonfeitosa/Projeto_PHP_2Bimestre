@@ -1,4 +1,3 @@
-
 <?php require_once("header.php"); ?>
 <?php
 $sql = "select * from produto ";
@@ -20,64 +19,63 @@ $result = $conn->query($sql);
                         <!--faz alinhamento  -->
 
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Digite aqui o que procura"
-                                name="pesquisa">
+                            <input type="text" class="form-control" placeholder="Digite aqui o que procura" name="pesquisa">
                             <button class="btn btn-danger" name="buscar">
                                 Buscar
                             </button>
                         </div>
                         <div class="col-5">
-                                    <select name="categoria" class="form-select" id="categoria">
-                                        <option value="">Todas as categorias</option>
-                                        <option value="categoria1">Categoria 1</option>
-                                        <option value="categoria2">Categoria 2</option>
-                                        <option value="categoria3">Categoria 3</option>
-                                    </select>
+                            <select name="categoria" class="form-select" id="categoria">
+                                <option value="">Todas as categorias</option>
+                                <option value="categoria1">Categoria 1</option>
+                                <option value="categoria2">Categoria 2</option>
+                                <option value="categoria3">Categoria 3</option>
+                            </select>
                         </div>
                         <?php
-                            // Verificar se o botão de busca foi clicado
-                            if (isset($_GET['buscar'])) {
-                                // Verificar se o campo de pesquisa está preenchido
-                                if (isset($_GET['pesquisa']) && !empty($_GET['pesquisa'])) {
-                                    $pesquisa = $_GET['pesquisa'];
+                        // Verificar se o botão de busca foi clicado
+                        if (isset($_GET['buscar'])) {
+                            // Verificar se o campo de pesquisa está preenchido
+                            if (isset($_GET['pesquisa']) && !empty($_GET['pesquisa'])) {
+                                $pesquisa = $_GET['pesquisa'];
 
-                                    // Conectar ao banco de dados
-                                    $conn;
-                                    if (!$conn) {
-                                        die('Erro ao conectar ao banco de dados: ' . mysqli_connect_error());
-                                    }
-
-                                    // Preparar a consulta SQL para buscar registros que correspondem à pesquisa
-                                    $sql = "SELECT * FROM produto WHERE nome LIKE '%$pesquisa%'";
-
-                                    // Executar a consulta SQL
-                                    $result = mysqli_query($conn, $sql);
-                                    if (!$result) {
-                                        die('Erro na consulta: ' . mysqli_error($conn));
-                                    }
-
-                                    // Exibir os resultados
-                                        while ($row = mysqli_fetch_assoc($result)) { ?>
-
-                                            <div class="card text-center bg-light m-2 d-flex " style="width: 16rem;">
-                                                <img src="<?= $row['image_url'] ?>" class="card-img-top" alt="...">
-                                                <h4 class="card-title"><?= $row['nome'] ?></h4>
-                    
-                                                <h4 class="card-title">R$ <?= $row['preco'] ?></h4>
-                    
-                                                <p class="card-text truncate-3l"><?= substr($row['descricao'], 0, 40) ?></p>
-                    
-                                                <button class="btn btn-success">
-                                                    Adicionar ao Carrinho
-                                                </button>
-                                            </div>
-                                        <?php }
-
-                                    // Fechar a conexão com o banco de dados
-                                    mysqli_close($conn);
+                                // Conectar ao banco de dados
+                                $conn;
+                                if (!$conn) {
+                                    die('Erro ao conectar ao banco de dados: ' . mysqli_connect_error());
                                 }
+
+                                // Preparar a consulta SQL para buscar registros que correspondem à pesquisa
+                                $sql = "SELECT * FROM produto WHERE nome LIKE '%$pesquisa%'";
+
+                                // Executar a consulta SQL
+                                $result = mysqli_query($conn, $sql);
+                                if (!$result) {
+                                    die('Erro na consulta: ' . mysqli_error($conn));
+                                }
+
+                                // Exibir os resultados
+                                while ($row = mysqli_fetch_assoc($result)) { ?>
+
+                                    <div class="card text-center bg-light m-2 d-flex " style="width: 16rem;">
+                                        <img src="<?= $row['image_url'] ?>" class="card-img-top" alt="...">
+                                        <h4 class="card-title"><?= $row['nome'] ?></h4>
+
+                                        <h4 class="card-title">R$ <?= $row['preco'] ?></h4>
+
+                                        <p class="card-text truncate-3l"><?= substr($row['descricao'], 0, 40) ?></p>
+
+                                        <button class="btn btn-success">
+                                            Adicionar ao Carrinho
+                                        </button>
+                                    </div>
+                        <?php }
+
+                                // Fechar a conexão com o banco de dados
+                                mysqli_close($conn);
                             }
-                            ?>
+                        }
+                        ?>
                     </form>
                 </div>
                 <!-- paginas e ordenação -->
@@ -112,7 +110,7 @@ $result = $conn->query($sql);
                             </ul>
                         </nav>
                     </div>
-                    
+
                 </div>
             </div>
             <!-- linha separadora -->
@@ -124,7 +122,7 @@ $result = $conn->query($sql);
 
                 <form action="" method="post" class="  d-flex flex-row ">
                     <?php
-                        while ($data = mysqli_fetch_array($result)) { ?>
+                    while ($data = mysqli_fetch_array($result)) { ?>
 
                         <div class="card text-center bg-light m-2" style="width: 16rem;">
                             <img src="<?= $data['image_url'] ?>" class="card-img-top" alt="...">

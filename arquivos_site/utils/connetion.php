@@ -1,16 +1,18 @@
 <?php
-/* define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASSWORD', 'ander22pa');
-define('DB_NAME', 'bd_resto'); */
+/**
+ * Create Database Connection
+ */
 
-define('DB_HOST', 'localhost'); // define o servidor
-define('DB_USER', 'root'); //define o usuário
-define('DB_PASSWORD', ''); //Ddefine a senha do banco
-define('DB_NAME', 'bd_resto'); //procura o nome do banco
+define ( 'DB_HOST', 'localhost' );
+define ( 'DB_USER', 'root' );
+define ( 'DB_PASSWORD', '' );
+define ( 'DB_NAME', 'bd_resto' );
 
+// Create connection using mysqli_connect()
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-if (!$conn) {
-  die("Failed to conect to MylSql" . mysqli_connect_error());
+// If $conn is false, connection is failed
+if (!$conn ) {
+  die("Failed to connect to MySQL: " . mysqli_connect_error());
 }
+?>

@@ -4,6 +4,8 @@
 $sql = "select * from produto ";
 
 $result = $conn->query($sql);
+$resultado = $conn->query($sql);
+
 
 ?>
 
@@ -16,77 +18,8 @@ $result = $conn->query($sql);
             <div class="row">
                 <div class="col-12 col-md-5">
                     <!-- FORMULARIO DE PESQUISA -->
+                    <?php require_once('filtro.php')?>
 
-                    <form class="justify-content-center justify-content-md-start">
-                        <!--faz alinhamento  -->
-
-                        <div class="input-group input-group-sm"><!-- BUSCA  -->
-                            <input type="text" class="form-control" placeholder="Digite aqui o que procura"
-                                name="pesquisa">
-                            <button class="btn btn-danger" name="buscar">
-                                Buscar
-                            </button>
-                        </div>
-                        <div class="col-5">
-                                    <select name="categoria" class="form-select" id="categoria">
-                                        <option value="">Todas as categorias</option>
-                                        <option value="categoria1">Categoria 1</option>
-                                        <option value="categoria2">Categoria 2</option>
-                                        <option value="categoria3">Categoria 3</option>
-                                    </select>
-                        </div>
-                        <?php
-                            // Verificar se o botão de busca foi clicado
-                            if (isset($_GET['buscar'])) {
-                                // Verificar se o campo de pesquisa está preenchido
-                                if (isset($_GET['pesquisa']) && !empty($_GET['pesquisa'])) {
-                                    $pesquisa = $_GET['pesquisa'];
-
-                                    // Conectar ao banco de dados
-                                    $conn;
-                                    if (!$conn) {
-                                        die('Erro ao conectar ao banco de dados: ' . mysqli_connect_error());
-                                    }
-
-                                    // Preparar a consulta SQL para buscar registros que correspondem à pesquisa
-                                    $sql = "SELECT * FROM produto WHERE nome LIKE '%$pesquisa%'";
-                                    // Consultar as categorias no banco de dados
-                                    $sqlCategorias = "SELECT * FROM categorias";
-                                    $resultCategorias = mysqli_query($conn, $sqlCategorias);
-                                    if (!$resultCategorias) {
-                                        die('Erro na consulta de categorias: ' . mysqli_error($conn));
-                                    }
-
-
-                                    // Executar a consulta SQL
-                                    $result = mysqli_query($conn, $sql);
-                                    if (!$result) {
-                                        die('Erro na consulta: ' . mysqli_error($conn));
-                                    }
-
-                                    // Exibir os resultados
-                                        while ($row = mysqli_fetch_assoc($result)) { ?>
-
-                                            <div class="card text-center bg-light m-2 d-flex " style="width: 16rem;">
-                                                <img src="<?= $row['image_url'] ?>" class="card-img-top" alt="...">
-                                                <h4 class="card-title"><?= $row['nome'] ?></h4>
-                    
-                                                <h4 class="card-title">R$ <?= $row['preco'] ?></h4>
-                    
-                                                <p class="card-text truncate-3l"><?= substr($row['descricao'], 0, 40) ?></p>
-                    
-                                                <button class="btn btn-success">
-                                                    Adicionar ao Carrinho
-                                                </button>
-                                            </div>
-                                        <?php }
-
-                                    // Fechar a conexão com o banco de dados
-                                    mysqli_close($conn);
-                                }
-                            }
-                            ?>
-                    </form>
                 </div>
                 <!-- paginas e ordenação -->
                 <div class="col-12 col-md-7"><!-- ORDENAÇÃO HEAD -->

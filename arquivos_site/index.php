@@ -52,9 +52,6 @@
 
         $result = $conn->query($sql);
 
-
-
-
     ?>
 
 <!-- cards -->

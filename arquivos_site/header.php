@@ -17,7 +17,7 @@
 <body >
     <!-- navbar -->
     
-    <br><br><br><br>
+    <br>
   
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color:#ee8f54; z-index: 1000;">
         <div class="container-fluid col-11 m-auto">

@@ -1,12 +1,12 @@
-.bgg {
+/* .bgg {
     background-color: red;
-}
+} */
 
-.centralizar {
+/* .centralizar {
 
     margin-left: auto;
     margin-right: auto;
-}
+} */
 
 .reset_decor {
 
@@ -24,12 +24,11 @@
     color: white;
     padding: 8px;
 }
-
 a .reset_decor:hover {
 
     text-decoration: none;
     color: white;
-    padding: 8px;
+    padding: 16px;
 
     cursor: pointer;
 
@@ -42,51 +41,139 @@ a .reset_decor:hover {
 
 .nm_sessao {
     margin-left: auto;
-    width: 150px;
+    width: 15000px;
     text-align: end;
-
-}
-
-.container_card {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    flex-wrap: wrap;
-    width: 90%;
-    align-items: center;
-    justify-content: start;
     
 }
-.n-pedido{
-    width: 15px;
-    height: 8px;
-    border: none;
-    text-align: center;
-    font-size: 0.6rem;
-    color: #26be00;
-    font-weight: bold;
-    
-}
-.bts{
-    margin-left: auto;
-    margin-top: -25px;
-    z-index: 5;
-}
 
-.btn2{
-    margin-top: 0;
-    padding: 0;
-    width: 16px;
-    right: 16px;
-    border: none;
-    background:none;
-}
+
 .img_card{
+    /* display: block; */
+   /*  display: table; */ 
+   /* flex-direction: row; */ 
+   /*  width: 300px;
+    padding: 20px;
+    margin-left: -15px; 
+    margin-right: 200px;
+    margin-bottom: -7px;
+    margin-top: -4px;
+    max-width: 14000px;  */
+
+    max-height: 180px;
+align-self: center;
+    width: 240px;
+    height: 254px;
+border-radius:8px;
+    object-fit: cover;
+   
+}
+.img_tama{
+    width: 290px;
+    padding: 18px;
+    margin-left: 5px;
+    margin-right: 400px;
+    border-bottom: 20px;
+} 
+.row{
+    margin-right: auto;
+    margin-left: auto;
     
-    max-height:180px;
-  
-    width: 254px;
-    right: 254px;
+    
+}
+.rodape{
+    display: block;
+    position: relative;
+    width: 100%;
+    clear: both;
+    margin-top: 100%;
+    background-color:"#fffdd";
+}
+/* .carousel-inner > .carousel-item > img{
+    width: 400px;
+    height: 500px;
+    margin-left: 3px;
+    margin-right: 4px;
+    margin-bottom: 50px;
+    margin-top: 100px;
+    color: #ee8f54;   
+ }  */
+
+.text> .text-center{
+    color: #e91a0b;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 250%;
+}
+/*  .col>.card >.img{
+    border-bottom: #95a2ad;
+    border-radius: 6x; 
+} */
+/* .col{
+    margin-right: 4px;
+    margin-bottom: 50px;
+    margin-top: 100px;  
+} */
+.text > {
+    color: #e91a0b;
+   /*  margin-top: 1000px;
+    margin-bottom: 1000px; */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 250%;
+}
+
+.img_banner{
+   
+    max-width: 1430px;
+    width: 1445px;
+    height: 600px;
+    margin-bottom: 9px;
+    margin-top: -100px;
     object-fit: cover;
 
-} 
+}
+.imagem {
+    width: 200px;
+    margin: 10px;
+    /* margin-top:10px; */
+    position: relative;
+    text-align: center;
+}
+.card-text{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 110%;
+    text-align: center;
+    color: black;
+    text-transform:capitalize;   
+    margin-bottom: 100px; 
+    margin-top: 0px;
+    bottom: auto;
+
+}
+.card-text1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 140%;
+    text-align: center;
+    color: black;
+    text-transform:capitalize;
+    margin-bottom: 0px;
+    margin-top: 3px;
+
+}
+.container_card{
+    width: 76%;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: start;
+  
+
+}
+.demo{
+    margin-bottom: 12px;
+}
+
+.recuo_menu{
+
+width: 85%;
+}

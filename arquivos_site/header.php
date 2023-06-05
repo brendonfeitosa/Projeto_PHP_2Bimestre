@@ -15,7 +15,7 @@ require_once("utils/connetion.php");
     <link rel="stylesheet" href="./CSS/styles.css" />
 </head>
 
-<body>
+<body >
     <!-- navbar -->
 
     <br><br><br><br>

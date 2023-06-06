@@ -81,7 +81,10 @@ require_once("utils/connetion.php");
                     </ul>
                 </div>
             </span>
-            <?php } ?>
+            <?php } 
+            echo $_SESSION['id'];
+            
+            ?>
             <!-- ////////////////////////////////////////////////////////////////////// -->
         </div>
 

@@ -1,5 +1,5 @@
 <?php
-require("./header.php");
+require("./header.inc.php");
 require_once("utils/connetion.php");
 
 

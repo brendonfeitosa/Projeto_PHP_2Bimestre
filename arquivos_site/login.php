@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password_verify($password, $data['senha'])) {
                 session_start();
                 $_SESSION['login'] = true;
-                $_SESSION['id'] = $data['ci_id'];
+                $_SESSION['id'] = $data['cli_id'];
                 $_SESSION['nome'] = $data['nome'];
                 $_SESSION['email'] = $data['email'];
                 mysqli_close($conn);

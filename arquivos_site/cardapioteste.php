@@ -1,35 +1,38 @@
 <?php require_once("header.php"); ?>
 <?php
-$qtd = '';
-$vl_unitario = '';
-$vl_total = '';
+$qtd = 0;
+$vl_unitario = 0;
+$vl_total = 0;
 $nome = '';
 
 $sql = "select * from produto";
 
-$result = $conn->query($sql);
+$resultado = $conn->query($sql);
 
-$data = mysqli_fetch_array($result);
+
+$result = $conn->query($sql);
+$result1 = $conn->query($sql);
+$data1 = mysqli_fetch_array($result1);
 
 if (isset($_GET['addcarrinho'])) {
-    $codigo = $data['codigo'];
-    $nome = $data['nome'];
+    $codigo = $data1['codigo'];
+    $nome = $data1['nome'];
     $qtd = $_GET['qtd'];
-    $vl_unitario = $data['preco'];
+    $vl_unitario = $data1['preco'];
     $vl_total = $qtd * $vl_unitario;
 }
-
+require_once('filtro.php');
 ?>
 <div class="text">
     <h4 class="text-center">CARDÁPIO</h4>
 </div>
-<?php while ($row = mysqli_fetch_assoc($result)) { ?>
+<?php while ($data = mysqli_fetch_assoc($result)) { ?>
     <div class="card text-center bg-light m-2 d-flex " style="width: 16rem;">
         <form action="" method="get">
-            <img src="<?= $row['image_url'] ?>" class="card-img-top" alt="...">
-            <h4 class="card-title"><?= $row['nome'] ?></h4>
-            <h4 class="card-title">R$ <?= $row['preco'] ?></h4>
-            <p class="card-text truncate-3l"><?= substr($row['descricao'], 0, 40) ?></p>
+            <img src="<?= $data['image_url'] ?>" class="card-img-top" alt="...">
+            <h4 class="card-title"><?= $data['nome'] ?></h4>
+            <h4 class="card-title">R$ <?= $data['preco'] ?></h4>
+            <p class="card-text truncate-3l"><?= substr($data['descricao'], 0, 40) ?></p>
             <div class="justify-content-center">
                 <div>
                     Quantidade:
@@ -48,7 +51,6 @@ if (isset($_GET['addcarrinho'])) {
 <?php }
 
 // Fechar a conexão com o banco de dados
-mysqli_close($conn);
 ?>
 </div>
 <div class="row ">

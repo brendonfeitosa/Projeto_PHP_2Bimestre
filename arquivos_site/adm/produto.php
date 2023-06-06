@@ -47,10 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         } else {
 
             $sql = "insert into produto(tipo_cod,nome,descricao,preco,promo,image_url,peso) values($tp,'$nome','$desc',$preco,$promo,'$img',$peso);";
-            // echo $sql;
+             echo $sql;
             $result = $conn->query($sql);
             if (!$result) {
                 $msg_err = "<span class='alert alert-warning'> não foi possivel cadastro</span>";
+                echo "erro";
             }
             header("Location: produto.php?msg=$msg_err");
         }

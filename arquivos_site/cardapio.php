@@ -3,8 +3,6 @@
 $qtd = 0;
 $vl_unitario = 0;
 $vl_total = 0;
-$nome = '';
-$vetcarrinho = [];
 
 $sql = "select * from produto";
 
@@ -12,19 +10,36 @@ $resultado = $conn->query($sql);
 
 
 $result = $conn->query($sql);
+
 $result1 = $conn->query($sql);
 $data1 = mysqli_fetch_array($result1);
 
 $vetcar = [];
-if (isset($_GET['addcarrinho'])) {
-    $codigo = $data1['codigo'];
-    $nome = $data1['nome'];
-    $qtd = $_GET['qtd'];
-    $vl_unitario = $data1['preco'];
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    
+    $codigo = $_POST['cod'];
+    $qtd = $_POST['qtd'];
+    $vl_unitario = $_POST['preco'];
     $vl_total = $qtd * $vl_unitario;
 
-    $_SESSION['carrinho'] = true;
-    
+    //$_SESSION['carrinho'] = true;
+    $_SESSION['carrinho'] = array();
+    $item= array();
+    array_push($item,$codigo,$qtd,$vl_unitario);
+
+
+   // if(count($_SESSION['carrinho']) == 0){
+       
+        $_SESSION['carrinho']= $item;
+
+  //  }else{
+        //$carrinho [] = $item; 
+  //  }
+ 
+
+   
+    print_r($_SESSION);
 }
 
 if (isset($_POST['finalizarpedido'])) {
@@ -45,10 +60,12 @@ require_once('filtro.php');
 </div>
 <?php while ($data = mysqli_fetch_assoc($result)) { ?>
     <div class="card text-center bg-light m-2 d-flex " style="width: 16rem;">
-        <form action="" method="get">
+        <form action="" method="post">
             <img src="<?= $data['image_url'] ?>" class="card-img-top" alt="...">
             <h4 class="card-title"><?= $data['nome'] ?></h4>
             <h4 class="card-title">R$ <?= $data['preco'] ?></h4>
+            <input type="hidden" name="preco" value="<?= $data['preco'] ?>">
+            <input type="hidden" name="cod">
             <p class="card-text truncate-3l"><?= substr($data['descricao'], 0, 40) ?></p>
             <div class="justify-content-center">
                 <div>

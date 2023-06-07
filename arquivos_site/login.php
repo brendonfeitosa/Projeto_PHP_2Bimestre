@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     
             $data = mysqli_fetch_array($result);
 
-            print_r($data);
+            //print_r($data);
         }
         
         if (!$data) {

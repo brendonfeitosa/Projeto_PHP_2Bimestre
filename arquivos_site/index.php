@@ -1,11 +1,7 @@
 <?php require_once('./header.php'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-   
-        
+       
     <!-- Carousel -->
     <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
@@ -44,17 +40,13 @@
         </div>
     </div> 
 
-    <br /><br /><br />
+    <br />
 
     <!-- cards -->
     <?php
         $sql = "select * from produto ";
 
         $result = $conn->query($sql);
-
-
-
-
     ?>
 
 <!-- cards -->

@@ -1,52 +1,73 @@
-<?php require_once("header.php"); 
+<?php require_once("header.php");
+$vl_total_item = 0;
 
-  print_r($_SESSION['carrinho']);
+print_r($_SESSION['carrinho']);
+
+$sql = "select * from produto";
+$result = $conn->query($sql);
+
+foreach ($_SESSION['carrinho'] as $chave => $produto) { 
+    $vl_total_item += $produto['preco'] * $produto['qtd'];
+}
+
+$sql2 = "INSERT INTO pedido (tipo_pagamento_cod, valor_total) VALUES (6, $vl_total_item)";
+
+$result = $conn->query($sql2);
+
+$sql2 = "";
+if($result){
+    foreach ($_SESSION['carrinho'] as $key => $value) {
+        $cod = $value['cod'];
+        
+    }
+}
+
+
 ?>
-<div class="col-11 m-auto">
-    <h1>Validar Pedido</h1>
-    <hr>
-    <br>
-    <div class="col-2 m-auto text-center"> <!-- temos que centrarlizar direito -->
-        <form action="" method="post">
-            <table class="table">
-                <thead>
+<?php if (isset($_SESSION['carrinho'])) { ?>
+    <section class="container_card">
+        <div class="text">
+            <h4 class="text-center">FINALIZAR PEDIDO</h4>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th scope="col">Nome</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Valor Unitario</th>
+                    <th scope="col">Valor Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                // print_r($_SESSION['carrinho']);
+
+                foreach ($_SESSION['carrinho'] as $chave => $produto) { ?>
                     <tr>
-                        <th scope="col">Item</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Quantidade</th>
+
+                        <td><?= $produto['nomeprod'] ?></td>
+                        <td><?= $produto['qtd'] ?></td>
+                        <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
+                        <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
+
                     </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th scope="row"></th>
-                        <strong>
-                            <th>Total</th>
-                            <th>R$</th>
-                        </strong>
-                    </tr>
-                </tfoot>
-            </table>
-            <button type="submit" class="btn btn-success">Finalizar pedido</button>
+                <?php } ?>
+            </tbody>
+        </table>
+        <form method="post" action="verificar_pedido.php" class="text-center">
+
+
+            <input type="submit" class="btn btn-outline-success" value="Finalizar Pedido" />
+
         </form>
+
+    </section>
+
+    </form>
     </div>
-</div>
+    </div>
 
-
+<?php } ?>
 <?php require_once("footer.php") ?>

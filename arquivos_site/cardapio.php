@@ -102,7 +102,6 @@ if (isset($_GET['limpar'])) {
         <table class="table">
             <thead>
                 <tr>
-
                     <th scope="col">Nome</th>
                     <th scope="col">Quantidade</th>
                     <th scope="col">Valor Unitario</th>
@@ -116,23 +115,17 @@ if (isset($_GET['limpar'])) {
 
                 foreach ($_SESSION['carrinho'] as $chave => $produto) { ?>
                     <tr>
-
                         <td><?= $produto['nomeprod'] ?></td>
                         <td><?= $produto['qtd'] ?></td>
                         <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
                         <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
-
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
         <form method="post" action="verificar_pedido.php" class="text-center">
-
-
             <input type="submit" class="btn btn-outline-success" value="Finalizar Pedido" />
-
         </form>
-
     </section>
 
     <!--  -->

@@ -3,6 +3,8 @@
 $qtd = 0;
 $vl_unitario = 0;
 $vl_total = 0;
+$cod = "";
+
 
 $sql = "select * from produto";
 
@@ -15,7 +17,7 @@ $result1 = $conn->query($sql);
 $data1 = mysqli_fetch_array($result1);
 
 $vetcar = [];
-
+/* 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $codigo = $_POST['cod'];
@@ -25,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     //$_SESSION['carrinho'] = true;
     // $_SESSION['carrinho'] = array();
-    /* $item = array();
-    array_push($item, $codigo, $qtd, $vl_unitario); */
-}
+    $item = array();
+    array_push($item, $codigo, $qtd, $vl_unitario);
+} */
 
 if (isset($_POST['finalizarpedido'])) {
     if (!isset($_SESSION['email']) || $_SESSION['email'] != true) {
@@ -38,7 +40,6 @@ if (isset($_POST['finalizarpedido'])) {
     }
 }
 
-
 if (isset($_GET['limpar'])) {
 
     session_destroy();
@@ -47,33 +48,39 @@ if (isset($_GET['limpar'])) {
 
 
 
+
 ?>
 
-<a href="cardapio.php?limpar=1">Limpar</a>
+
 <section class="cl_filtro">
     <?php
     require_once('filtro.php');
     ?>
 </section>
-<section class="container_card ">
+<section class="container_card">
     <div class="row text-center">
 
 
         <div class="text">
             <h4 class="text-center">CARDÁPIO</h4>
         </div>
-        <?php while ($data = mysqli_fetch_assoc($result)) { ?>
-            <div class="card m-2" style="width: 16rem;height: 380px; ">
+        <?php while ($data = mysqli_fetch_assoc($result)) {
+
+        ?>
+            <div class="card m-2" style="width: 16rem;height: 410px; ">
 
                 <form action="carrinho.php" method="post">
                     <input type="hidden" name="cod" value="<?= $data['codigo'] ?>">
+                    <input type="hidden" name="preco" value="<?= $data['preco'] ?>">
+                    <input type="hidden" name="nomeprod" value="<?= $data['nome'] ?>">
                     <strong class="card-text1"><?= $data['nome'] ?> </strong>
                     <img src="<?= $data['image_url'] ?>" class="img_card2" alt="...">
 
                     <div class="text-descr"><?= substr($data['descricao'], 0, 40) ?></div>
+                    <div>R$<?= number_format($data['preco'], 2, ',', '.') ?></div>
                     <div style="margin-top: 5px;">
 
-                        Quantidade: <input type="number" name="qtde" class="tm_input" min="1" value="1" /> <br />
+                        Quantidade: <input type="number" name="qtd" class="tm_input" min="1" value="1" /> <br />
                         <input type="submit" name="addcarrinho" id="addcarrinho" class="btn btn-success" value="Adicionar ao Carrinho" />
                     </div>
                 </form>
@@ -84,40 +91,52 @@ if (isset($_GET['limpar'])) {
     </div>
 
 </section>
+<?php if (isset($_SESSION['carrinho'])) { ?>
+    <section class="container_card">
 
-<section>
+        <div class="text">
+            <h4 class="text-center">ITENS ADICIONADOS</h4>
+        </div>
 
-    <<table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
+
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th scope="col">Nome</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Valor Unitario</th>
+                    <th scope="col">Valor Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                // print_r($_SESSION['carrinho']);
+
+                foreach ($_SESSION['carrinho'] as $chave => $produto) { ?>
+                    <tr>
+
+                        <td><?= $produto['nomeprod'] ?></td>
+                        <td><?= $produto['qtd'] ?></td>
+                        <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
+                        <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
+
+                    </tr>
+                <?php } ?>
+            </tbody>
         </table>
+        <form method="post" action="verificar_pedido.php" class="text-center">
 
-</section>
 
-<!--  -->
-<?php require_once("footer.php") ?>
+            <input type="submit" class="btn btn-outline-success" value="Finalizar Pedido" />
+
+        </form>
+
+    </section>
+
+    <!--  -->
+<?php
+}
+
+require_once("footer.php") ?>

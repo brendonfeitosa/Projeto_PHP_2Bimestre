@@ -1,4 +1,7 @@
-<?php require_once("header.php"); ?>
+<?php require_once("header.php"); 
+
+  print_r($_SESSION['carrinho']);
+?>
 <div class="col-11 m-auto">
     <h1>Validar Pedido</h1>
     <hr>

@@ -97,7 +97,11 @@ require_once("utils/connetion.php");
 
             <!-- ////////////////////////////////////////////////////////////////////// -->
 
+            <?php
+            if (isset($_SESSION['carrinho'])) { ?>
+                <a href="cardapio.php?limpar=1"><button class="btn btn-outline-secondary text-end">Limpar Carrinho</button></a>
 
+            <?php } ?>
 
 
     </nav>

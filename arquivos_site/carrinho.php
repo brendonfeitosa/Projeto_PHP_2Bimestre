@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $qtde = $_POST['qtde'];
 
 }
-
 if (empty($_SESSION['carrinho'])) {
     $_SESSION['carrinho'] = [];
  } 

@@ -1,10 +1,9 @@
 <?php
 require_once("header.php");
-
 require_once("utils/connetion.php");
-
 $email = "";
 $nome = "";
+$password_err = "";
 $sexo = "";
 $senha = "";
 $username = "";
@@ -13,8 +12,29 @@ $confirm_senha = "";
 $login_err = "";
 $email_err = "";
 $data = "";
+$icep = null;
+$id = "";
+$row = "";
+//print_r($_SESSION);
+if (isset($_GET['id'])) {
+   $id = $_GET['id'];
+//if ($_SESSION['id'] != "" && $_SESSION['login'] == null) {
+    $id = $_SESSION['id'];
+    $sql = "select * from cliente where cli_id = $id";
+    $result = $conn->query($sql);
+
+    $row = mysqli_fetch_assoc($result);
+   $nome = $row['nome'];
+   $username = $row['nickname'];
+   $whats = $row['whatsapp'];
+   $sexo = $row['sexo'];
+   $email =  $row['email'];
+   $data = $row['dt_nasc'];
+}
+
 //print_r($_POST);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
     if (empty(trim($_POST['email'])) || empty(trim($_POST['nickname']))) {
         $email_err = "Por favor, informe os dados necessarios";
     } else {
@@ -28,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($data['num_users'] > 0) {
             $username_err = "usuário ja cadastrado";
         } else {
-           
+
             $email = $_POST['email'];
             $nome = $_POST['nome'];
             $senha = $_POST['senha'];
@@ -52,22 +72,36 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $sql = "insert into cliente (nome,sexo,dt_nasc, nickname,senha,whatsapp,email) ";
         $sql .= "values ('$nome','$sexo','$data','$username','$senha','$whats','$email');";
-        //echo $sql;
+        echo $sql;
         $result = $conn->query($sql);
 
         if (!$result) {
 
             $register_err = "não foi possivel registrar";
-        }else{
-            header("Location :login.php");
+        } else {
+            header("Location: login.php");
         }
     }
+   
+    
 }
+
 mysqli_close($conn);
 
 ?>
 
-<form method="post">
+<form method="post" action="">
+    <?php 
+    if($password_err != ""){?>
+    <br />
+        <span class="alert alert-danger"> 
+            <?=$password_err?>
+        </span>
+    
+        <br />
+        <br />
+   <?php } ?>
+    <input type="hidden" name="cliId" value="<?=$id?>">
     <div class="container-fluid col-11 m-auto">
         <h1>Registre-se</h1>
         <hr>
@@ -75,47 +109,75 @@ mysqli_close($conn);
         <div class="col-4">
             <div class="mb-3">
                 <label for="nomecontato" class="form-label">Nome:</label>
-                <input type="text" name="nome" class="form-control" id="nomecontato" placeholder="Ex. João de Souza">
+                <input type="text" name="nome" class="form-control" value="<?= $nome ?>" id="nomecontato" placeholder="Ex. João de Souza">
             </div>
             <div class="mb-3">
                 <label for="nickname" class="form-label">Username:</label>
-                <input type="text" name="nickname" class="form-control" id="nickname" placeholder="Ex. jsouza">
+                <input type="text" name="nickname" class="form-control" value="<?= $username ?>" id="nickname" placeholder="Ex. jsouza">
             </div>
             <div class="mb-3">
-                <label for="dt_nasc" class="form-label">dt_nasc:</label>
-                <input type="date" name="dt_nasc" class="form-control" id="dt_nasc" placeholder="Ex. jsouza">
+                <label for="dt_nasc" class="form-label">Data nasc.:</label>
+                <input type="date" name="dt_nasc" class="form-control" value="<?=$data?>" id="dt_nasc" placeholder="Ex. jsouza">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+                <input type="email" class="form-control" name="email" value="<?=$email?>" id="email" placeholder="name@example.com">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Genero:</label>&nbsp;
 
-                <input type="radio" class="" name="genero" id="M" value="M" />
-                <label for="email" class="form-label">Masculino</label>&nbsp;&nbsp;&nbsp;
+                <input type="radio" class="" <?= ($sexo == 'M' ? 'checked' : '') ?> name="genero" id="M" value="M" />
+                <label for="email" class="form-label">Masculino</label> &nbsp; &nbsp;&nbsp;
 
-                <input type="radio" class="" name="genero" id="F" value="F" />
+                <input type="radio" <?= ($sexo == 'F' ? 'checked' : '') ?> class="" name="genero" id="F" value="F" />
 
                 <label for="email" class="form-label">Feminino: </label>
 
             </div>
+            <div class="mb-3" style="width: 400px;">
+
+
+            </div>
             <div class="mb-3">
                 <label for="whatsapp" class="form-label">Whatsapp:</label>
-                <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000">
+                <input type="text" class="form-control" id="whatsapp" value="<?= $whats ?>" name="whatsapp" placeholder="(00) 00000-0000">
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha:</label>
-                <input type="text" name="senha" class="form-control" id="senha" placeholder="Ex. Silva">
+                <input type="password" name="senha" class="form-control" min="6" id="senha" placeholder="Ex. Silva">
             </div>
             <div class="mb-3">
                 <label for="confirm_senha" class="form-label">Confirme a senha:</label>
-                <input type="text" class="form-control" name="confirm_senha" id="confirm_senha" placeholder="Ex. Silva">
+                <input type="password" class="form-control" min="6" name="confirm_senha" id="confirm_senha" placeholder="Ex. Silva">
             </div>
+            <?php if ($id == null) { ?>
+                <button type="submit" class="btn btn-outline-success">Cadastrar</button>
+            <?php } else { ?>
+                <div class="row g-3">
 
-            <button type="submit" class="btn btn-outline-success">Cadastrar</button>
 
+                    <!-- ---------------------- Cadastro de Endereços --------------------------------- -->
+
+
+                    <div class="col-sm">
+                        <a href="endereco.php?id=<?=$id?>">
+                        <button type="button" class="btn btn-outline-primary" >Endereços</button></a>
+                       
+                        
+                        <input type="submit" name="update" class="btn btn-outline-success" value="Editar">
+
+                       
+                    </div>
+
+
+
+                </div>
         </div>
+
+
+        <!-- ------------------------ end code -------------------------------------------- -->
+    <?php } ?>
+    </div>
     </div>
 </form>
 <?php require_once("footer.php") ?>

@@ -1,28 +1,24 @@
-<?php
+<?php 
 $cep = "";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
    $cep = $_POST['cep'];
 }
 
-function get_endereco($cep)
-{
-   // formatar o cep removendo caracteres nao numericos
-   $json = file_get_contents("http://viacep.com.br/ws/$cep/json/");
-   $cpJson = json_decode($json, true);
+function get_endereco($cep){
 
-   return $cpJson;
-}
 
-// print_r(get_endereco("19026440"));
+    // formatar o cep removendo caracteres nao numericos
+    $cep = preg_replace("/[^0-9]/", "", $cep);
 
-function validaCep($cep)
-{
+    $json = file_get_contents("http://viacep.com.br/ws/$cep/json/");
+   
+    $cpJson= json_decode($json, true);
+  
+    
+    return $cpJson;
+  }
 
-   if (!preg_match('/[0-9]{5,5}([- ]?[0-9]{3,3})?$/', $cep)) {
-
-      return false;
-   }
-
-   return true;
-}
+ // print_r(get_endereco("19026440"));
+  
+?>

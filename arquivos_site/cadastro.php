@@ -12,29 +12,8 @@ $confirm_senha = "";
 $login_err = "";
 $email_err = "";
 $data = "";
-$icep = null;
-$id = "";
-$row = "";
-//print_r($_SESSION);
-if (isset($_GET['id'])) {
-   $id = $_GET['id'];
-//if ($_SESSION['id'] != "" && $_SESSION['login'] == null) {
-    $id = $_SESSION['id'];
-    $sql = "select * from cliente where cli_id = $id";
-    $result = $conn->query($sql);
-
-    $row = mysqli_fetch_assoc($result);
-   $nome = $row['nome'];
-   $username = $row['nickname'];
-   $whats = $row['whatsapp'];
-   $sexo = $row['sexo'];
-   $email =  $row['email'];
-   $data = $row['dt_nasc'];
-}
-
 //print_r($_POST);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
     if (empty(trim($_POST['email'])) || empty(trim($_POST['nickname']))) {
         $email_err = "Por favor, informe os dados necessarios";
     } else {
@@ -103,7 +82,9 @@ mysqli_close($conn);
    <?php } ?>
     <input type="hidden" name="cliId" value="<?=$id?>">
     <div class="container-fluid col-11 m-auto">
-        <h1>Registre-se</h1>
+        <div class="regist">
+            <h1>Registre-se</h1>
+        </div>
         <hr>
 
         <div class="col-4">
@@ -144,40 +125,18 @@ mysqli_close($conn);
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha:</label>
-                <input type="password" name="senha" class="form-control" min="6" id="senha" placeholder="Ex. Silva">
+                <input type="text" name="senha" class="form-control" id="senha" placeholder="Ex. Silva">
             </div>
             <div class="mb-3">
                 <label for="confirm_senha" class="form-label">Confirme a senha:</label>
-                <input type="password" class="form-control" min="6" name="confirm_senha" id="confirm_senha" placeholder="Ex. Silva">
+                <input type="text" class="form-control" name="confirm_senha" id="confirm_senha" placeholder="Ex. Silva">
             </div>
-            <?php if ($id == null) { ?>
-                <button type="submit" class="btn btn-outline-success">Cadastrar</button>
-            <?php } else { ?>
-                <div class="row g-3">
 
+            <button type="submit" class="btn btn-outline-success">Cadastrar</button>
 
-                    <!-- ---------------------- Cadastro de Endereços --------------------------------- -->
-
-
-                    <div class="col-sm">
-                        <a href="endereco.php?id=<?=$id?>">
-                        <button type="button" class="btn btn-outline-primary" >Endereços</button></a>
-                       
-                        
-                        <input type="submit" name="update" class="btn btn-outline-success" value="Editar">
-
-                       
-                    </div>
-
-
-
-                </div>
         </div>
-
-
-        <!-- ------------------------ end code -------------------------------------------- -->
-    <?php } ?>
-    </div>
     </div>
 </form>
+<br>
+<br><br>
 <?php require_once("footer.php") ?>

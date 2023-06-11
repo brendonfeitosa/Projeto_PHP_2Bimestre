@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     
             $data = mysqli_fetch_array($result);
 
-            //print_r($data);
+            print_r($data);
         }
         
         if (!$data) {
@@ -44,8 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['id'] = $data['cli_id'];
                 $_SESSION['nome'] = $data['nome'];
                 $_SESSION['email'] = $data['email'];
-                $_SESSION['voltar'] = "";
-                
                 mysqli_close($conn);
 
                 header("Location: index.php");
@@ -58,20 +56,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<body>
+
     <main class="p-2"><br />
         <span><?= $login_err ?></span>
-        <h2>Login</h2>
-        <p>Por favor insira os dados pra realizar o Login</p>
+        <div class="login">
+        <h2 class="text-center">Login</h2>
+        <p  class="text-center">Por favor insira os dados para realizar o Login</p>
+        <div>
         <hr>
-        <section class="form_login">
+        <section class="form_login>
             <form ation="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group">
-                    <label>Email ou Username:</label>
+                    <label>E-mail:</label>
                     <input type="text" name="username" required class="form-control">
                     <span class="invalid-feedback"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group ">
                     <label>Senha:</label>
                     <input type="password" name="senha" required class="form-control">
                     <span class="invalid-feedback"></span>

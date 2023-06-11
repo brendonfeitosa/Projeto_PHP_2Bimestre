@@ -163,8 +163,9 @@ mysqli_close($conn);
                         <a href="endereco.php?id=<?=$id?>">
                         <button type="button" class="btn btn-outline-primary" >Endereços</button></a>
                        
-                        
-                        <input type="submit" name="update" class="btn btn-outline-success" value="Editar">
+                        <a href="editar.php?id=<?=$id?>">
+                        <button type="button" class="btn btn-outline-danger" >Editar</button></a>
+                       
 
                        
                     </div>
@@ -172,8 +173,8 @@ mysqli_close($conn);
 
 
                 </div>
+                
         </div>
-
 
         <!-- ------------------------ end code -------------------------------------------- -->
     <?php } ?>

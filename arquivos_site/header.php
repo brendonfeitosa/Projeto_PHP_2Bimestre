@@ -39,18 +39,10 @@ require_once("./utils/connetion.php");
                     <li class="nav-item">
                         <a class="nav-link  fw-bolder" href="pedidos.php">Pedidos</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="cardapioteste.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cardápio</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item fw-bolder" href="cardapioteste.php">Cardápio</a></li>
-                            <hr>
-                            <li><a class="dropdown-item fw-bolder font" href="cardapioteste.php">Massas</a></li>
-                            <li><a class="dropdown-item fw-bolder" href="cardapioteste.php">Pizzas</a></li>
-                            <li><a class="dropdown-item fw-bolder " href="cardapioteste.php">Sobremesas</a></li>  
-                        </ul>
-
-
+                    <li class="nav-item">
+                        <a class="nav-link  fw-bolder" href="cardapio.php">Cardápio</a>
                     </li>
+                 
 
                 </ul>
 

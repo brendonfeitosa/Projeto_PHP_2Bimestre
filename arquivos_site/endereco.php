@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $endcod = $_POST['endcod'];
     // print_r($_POST);
     if ($cep != "" && $endcod == "") {
-      //  echo "??";
+        //  echo "??";
         try {
 
             if (!validaCep($cep)) {
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             $sql = "insert into endereco(cliente_cli_id,cep,logradouro,numero,comp,bairro,cidade) ";
             $sql .= " values($id, '$cep', '$rua', '$numero', '$compl', '$bairro', '$cidade');";
-            echo  $sql;
+            //  $sql;
 
             $result = $conn->query($sql);
 
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         //echo "aqui " . $sql;
         $result  = $conn->query($sql);
-        
+
         $compl = "";
         $cep = "";
         $rua = "";
@@ -126,9 +126,10 @@ if (isset($_GET['ecod'])) {
     $cidade = $end['cidade'];
     $numero = $end['numero'];
 }
-
+//print_r($_SESSION);
 
 ?>
+
 <form method="post">
     <input type="hidden" name="endcod" value="<?= $endcod ?>">
     <h3>Cadastrado de Endereços</h3>
@@ -156,7 +157,7 @@ if (isset($_GET['ecod'])) {
             $cep = "";
         } else if ($msg != "") { ?>
             <br />
-            
+
             <span class="alert alert-success sm-4">
                 <?= $msg ?>
             </span>
@@ -242,6 +243,12 @@ if (isset($_GET['ecod'])) {
 
     </section>
 
+    
+    <a href="cadastro.php?id=<?= $id ?>"  style="margin-left: 15px; text-decoration: none;" class="">
+        <i class="bi bi-arrow-left-square"></i>
+       voltar
+    </a>
+
     <hr>
     <section id="container">
 
@@ -250,7 +257,7 @@ if (isset($_GET['ecod'])) {
 
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+
                     <th scope="col">Cep</th>
                     <th scope="col">Rua</th>
                     <th scope="col">Número</th>
@@ -271,7 +278,7 @@ if (isset($_GET['ecod'])) {
                     $endcod = $end['end_cod'];
                 ?>
                     <tr class="">
-                        <td><?= $end['end_cod'] ?></td>
+
                         <td><?= $end['cep'] ?></td>
                         <td><?= $end['logradouro'] ?></td>
                         <td><?= $end['numero'] ?></td>
@@ -284,8 +291,8 @@ if (isset($_GET['ecod'])) {
                                     <a style="color:white; text-decoration: none;" href="endereco.php?id=<?= $id ?>&ecod=<?= $endcod ?>">
                                         Editar</a>
                                 </button>
-                                <button class="btn btn-danger" onclick="confirm('Deseja excluir o registro?')">
-                                    <a style="color:white; text-decoration: none;" href="delete_endereco.php?id=<?= $id ?>&ecod=<?= $endcod ?>">Excluir</a>
+                                <button class="btn btn-danger" onclick="conirm('Deseja excluir o registro?')">
+                                    <a style="color:white; text-decoration: none;" href="delete_endereco.php?ecod=<?= $endcod ?>">Excluir</a>
 
                                 </button>
 

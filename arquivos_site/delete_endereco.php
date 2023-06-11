@@ -4,13 +4,13 @@ if (!isset($_SESSION['email']) || $_SESSION['email'] != true) {
     header("Location: login.php");
 
 }
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
+if(isset($_GET['ecod'])){
+   // $id = $_GET['id'];
     $ecod = $_GET['ecod'];
 	//echo $table." ".$id;
 	require_once('./utils/connetion.php'); 
 
-	$mysql_query = "DELETE FROM endereco where end_cod = $ecod and cliente_cli_id = $id";
+	$mysql_query = "DELETE FROM endereco where end_cod = $ecod;";
 	$del = $conn->query($mysql_query);
 
 	

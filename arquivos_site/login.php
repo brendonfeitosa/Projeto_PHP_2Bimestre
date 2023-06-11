@@ -44,6 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['id'] = $data['cli_id'];
                 $_SESSION['nome'] = $data['nome'];
                 $_SESSION['email'] = $data['email'];
+                $_SESSION['voltar'] = "";
+                
                 mysqli_close($conn);
 
                 header("Location: index.php");
@@ -65,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <section class="form_login">
             <form ation="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group">
-                    <label>Email ou Email:</label>
+                    <label>Email ou Username:</label>
                     <input type="text" name="username" required class="form-control">
                     <span class="invalid-feedback"></span>
                 </div>

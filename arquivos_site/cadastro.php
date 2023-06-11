@@ -1,9 +1,9 @@
 <?php
 require_once("header.php");
-
 require_once("utils/connetion.php");
 $email = "";
 $nome = "";
+$password_err = "";
 $sexo = "";
 $senha = "";
 $username = "";
@@ -13,11 +13,13 @@ $login_err = "";
 $email_err = "";
 $data = "";
 $icep = null;
-$id = null;
+$id = "";
 $row = "";
-
+//print_r($_SESSION);
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+   $id = $_GET['id'];
+//if ($_SESSION['id'] != "" && $_SESSION['login'] == null) {
+    $id = $_SESSION['id'];
     $sql = "select * from cliente where cli_id = $id";
     $result = $conn->query($sql);
 
@@ -32,8 +34,7 @@ if (isset($_GET['id'])) {
 
 //print_r($_POST);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-echo "?????";
-    $icep = $_POST['cep'];
+
     if (empty(trim($_POST['email'])) || empty(trim($_POST['nickname']))) {
         $email_err = "Por favor, informe os dados necessarios";
     } else {
@@ -71,7 +72,7 @@ echo "?????";
 
         $sql = "insert into cliente (nome,sexo,dt_nasc, nickname,senha,whatsapp,email) ";
         $sql .= "values ('$nome','$sexo','$data','$username','$senha','$whats','$email');";
-        //echo $sql;
+        echo $sql;
         $result = $conn->query($sql);
 
         if (!$result) {
@@ -81,12 +82,26 @@ echo "?????";
             header("Location: login.php");
         }
     }
+   
+    
 }
+
 mysqli_close($conn);
 
 ?>
 
-<form method="post">
+<form method="post" action="">
+    <?php 
+    if($password_err != ""){?>
+    <br />
+        <span class="alert alert-danger"> 
+            <?=$password_err?>
+        </span>
+    
+        <br />
+        <br />
+   <?php } ?>
+    <input type="hidden" name="cliId" value="<?=$id?>">
     <div class="container-fluid col-11 m-auto">
         <h1>Registre-se</h1>
         <hr>
@@ -129,11 +144,11 @@ mysqli_close($conn);
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha:</label>
-                <input type="password" name="senha" class="form-control" id="senha" placeholder="Ex. Silva">
+                <input type="password" name="senha" class="form-control" min="6" id="senha" placeholder="Ex. Silva">
             </div>
             <div class="mb-3">
                 <label for="confirm_senha" class="form-label">Confirme a senha:</label>
-                <input type="password" class="form-control" name="confirm_senha" id="confirm_senha" placeholder="Ex. Silva">
+                <input type="password" class="form-control" min="6" name="confirm_senha" id="confirm_senha" placeholder="Ex. Silva">
             </div>
             <?php if ($id == null) { ?>
                 <button type="submit" class="btn btn-outline-success">Cadastrar</button>
@@ -144,11 +159,14 @@ mysqli_close($conn);
                     <!-- ---------------------- Cadastro de Endereços --------------------------------- -->
 
 
-                    <div class="col-sm-12">
+                    <div class="col-sm">
                         <a href="endereco.php?id=<?=$id?>">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Endereços</button></a>
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Encerrar conta</button>
+                        <button type="button" class="btn btn-outline-primary" >Endereços</button></a>
+                       
+                        
+                        <input type="submit" name="update" class="btn btn-outline-success" value="Editar">
+
+                       
                     </div>
 
 

@@ -1,5 +1,5 @@
 <?php
-require_once("header.inc.php");
+require_once("header.php");
 
 require_once("utils/connetion.php");
 $email = "";
@@ -88,7 +88,9 @@ mysqli_close($conn);
 
 <form method="post">
     <div class="container-fluid col-11 m-auto">
-        <h1>Registre-se</h1>
+        <div class="regist">
+            <h1>Registre-se</h1>
+        </div>
         <hr>
 
         <div class="col-4">
@@ -162,4 +164,6 @@ mysqli_close($conn);
     </div>
     </div>
 </form>
+<br>
+<br><br>
 <?php require_once("footer.php") ?>

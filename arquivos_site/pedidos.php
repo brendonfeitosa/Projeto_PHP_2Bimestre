@@ -13,18 +13,17 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != true) {
 ?>
 <div style="height: 73.5vh;">
     <p>
-
-        Para visualizar os pedidos voce precisa fazer o <a href="login.php">login...</a>
+      Para visualizar os pedidos voce precisa fazer o <a href="login.php">login...</a>
     </p>
 
 </div>
 <div class="col-11 m-auto" style="display: <?=$display?>;">
-    <h1>Histórico de Pedidos</h1>
+    <h1 class="pedido">Histórico de Pedidos</h1>
     <hr>
     <br>
     <div class="col-8 m-auto text-center"> <!-- temos que centrarlizar direito -->
         <table class="table">
-            <thead>
+            <thead >
                 <tr>
                     <th scope="col">Número do pedido</th>
                     <th scope="col">Data do pedido</th>
@@ -55,6 +54,6 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] != true) {
         </table>
     </div>
 </div>
-
-
+<br>
+<br>
 <?php require_once("footer.php") ?>

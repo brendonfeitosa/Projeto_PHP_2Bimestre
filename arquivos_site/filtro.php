@@ -52,7 +52,7 @@
     ?>
 </form>
 <form class="ml-3 d-inline-block " method="GET">
-
+<br />
     <select class="form-select form-select-sm" name="categoria" onchange="this.form.submit()">
         <option value="">Selecione a categoria</option>
         <?php

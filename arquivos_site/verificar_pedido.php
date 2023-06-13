@@ -1,26 +1,60 @@
-<?php require_once("header.php");
+<?php
+require_once("header.php");
+if (isset($_SESSION['carrinho'])) {
+
+    if ($_SESSION['id'] == "") {
+        header("Location:login.php");
+    }
+}
 $vl_total_item = 0;
 
-print_r($_SESSION['carrinho']);
+//print_r($_SESSION['carrinho']);
 
 $sql = "select * from produto";
 $result = $conn->query($sql);
 
-foreach ($_SESSION['carrinho'] as $chave => $produto) { 
-    $vl_total_item += $produto['preco'] * $produto['qtd'];
-}
-
-$sql2 = "INSERT INTO pedido (tipo_pagamento_cod, valor_total) VALUES (6, $vl_total_item)";
-
-$result = $conn->query($sql2);
-
-$sql2 = "";
-if($result){
-    foreach ($_SESSION['carrinho'] as $key => $value) {
-        $cod = $value['cod'];
-        
+foreach ($_SESSION['carrinho'] as $chave => $produto) {
+    if ($produto != null) {
+        $vl_total_item += $produto['preco'] * $produto['qtd'];
     }
 }
+
+$sql1 = "select * from tipo_pagamento;";
+$result1 = $conn->query($sql1);
+
+
+
+
+if (isset($_POST['finalizar'])) {
+
+
+    $sql2 = "INSERT INTO pedido (tipo_pagamento_cod,cliente_cli_id, valor_total) VALUES ({$_POST['pgto']}, {$_SESSION['id']},$vl_total_item)";
+    print_r($_POST);
+    echo $sql2;
+    $result = $conn->query($sql2);
+    $ultimopedido = "SELECT MAX(ped_num) as maxId FROM pedido;";
+    $result3 = $conn->query($ultimopedido);
+
+    $pedidoNum = mysqli_fetch_assoc($result3);
+
+    $sql2 = "";
+    if ($result) {
+        foreach ($_SESSION['carrinho'] as $key => $value) {
+            if ($value != null) {
+                $cod = $value['cod'];
+                $qtd = $value['qtd'];
+                $vlUnitario = $value['preco'];
+                $vlTotal =  $vlUnitario  * $qtd;
+
+                $sql2 = "INSERT INTO produto_has_pedido ( produto_codigo,pedido_ped_num,qtde,valorUinitario, desconto,subtotal)";
+                $sql2 .= "  VALUES($cod,{$pedidoNum['maxId']},$qtd,$vlUnitario,0,$vlTotal);";
+
+                $result = $conn->query($sql2);
+            }
+        }
+    }
+}
+
 
 
 ?>
@@ -37,29 +71,63 @@ if($result){
                     <th scope="col">Quantidade</th>
                     <th scope="col">Valor Unitario</th>
                     <th scope="col">Valor Total</th>
+                    <th scope="col">---</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
+                <form method="post" action="verificar_pedido.php" class="text-center">
 
-                // print_r($_SESSION['carrinho']);
+                    <?php
 
-                foreach ($_SESSION['carrinho'] as $chave => $produto) { ?>
-                    <tr>
+                    // print_r($_SESSION['carrinho']);
 
-                        <td><?= $produto['nomeprod'] ?></td>
-                        <td><?= $produto['qtd'] ?></td>
-                        <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
-                        <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
+                    foreach ($_SESSION['carrinho'] as $chave => $produto) {
+                        if ($produto != null) { ?>
+                            <tr>
 
-                    </tr>
-                <?php } ?>
+                                <td><?= $produto['nomeprod'] ?></td>
+                                <td><?= $produto['qtd'] ?></td>
+                                <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
+                                <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
+
+                                <td class="text-center">
+
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+
+
+                                        <button class="btn btn-primary">
+                                            <a style="color:white; text-decoration: none;" href="produto.php?cod=<?= $pcod ?>">Editar</a>
+
+                                        </button>
+                                        <button class="btn btn-danger" onclick="confirm('Deseja excluir o registro?')">
+                                            <a style="color:white; text-decoration: none;" href="delete.php?id=<?= $pcod ?>&tb=2">Excluir</a>
+
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                    <?php }
+                    } ?>
             </tbody>
         </table>
-        <form method="post" action="verificar_pedido.php" class="text-center">
 
 
-            <input type="submit" class="btn btn-outline-success" value="Finalizar Pedido" />
+
+        <div class="text-center">
+            <?php
+            while ($tppgto = mysqli_fetch_array($result1)) { ?>
+
+                <label for="pgto"><?= strtoupper($tppgto['nome']) ?></label>
+                <input type="radio" name="pgto" <?= $tppgto['cod'] == 9 ? 'checked' : '' ?> id="pgto" value="<?= $tppgto['cod'] ?>">&nbsp;
+            <?php } ?>
+            <br />
+            <br />
+
+            <input type="submit" class="btn btn-outline-success" name="finalizar" value="Finalizar Pedido" />
+        </div>
 
         </form>
 

@@ -1,4 +1,4 @@
-<?php require_once('./header.php'); ?>
+<?php require('./header.php'); ?>
 
 <!-- Carousel -->
 <div id="demo" class="carousel slide centralizar" data-bs-ride="carousel">

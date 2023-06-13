@@ -40,23 +40,12 @@ if (isset($_POST['finalizarpedido'])) {
     }
 }
 
-if (isset($_GET['limpar'])) {
-
-    session_destroy();
-    unset($_SESSION['carrinho']);/*  */
-}
-
-
-
 
 ?>
-
-
-<section class="cl_filtro">
-    <?php
+<?php
     require_once('filtro.php');
-    ?>
-</section>
+?>
+
 <section class="container_card">
     <div class="row text-center">
 
@@ -113,14 +102,17 @@ if (isset($_GET['limpar'])) {
 
                 // print_r($_SESSION['carrinho']);
 
-                foreach ($_SESSION['carrinho'] as $chave => $produto) { ?>
+                foreach ($_SESSION['carrinho'] as $chave => $produto) { 
+                    
+                      if($produto != null){
+                    ?>
                     <tr>
                         <td><?= $produto['nomeprod'] ?></td>
                         <td><?= $produto['qtd'] ?></td>
                         <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
                         <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
                     </tr>
-                <?php } ?>
+                <?php } }?>
             </tbody>
         </table>
         <form method="post" action="verificar_pedido.php" class="text-center">

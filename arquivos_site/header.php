@@ -1,19 +1,26 @@
-<?php session_start();
+<?php
+session_start();
 require_once("utils/connetion.php");
+
+if (isset($_GET['limpar'])) {
+
+    unset($_SESSION['carrinho']);/*  */
+    //session_destroy();
+    header("Location:cardapio.php");
+}
 ?>
 <!doctype html>
 <html lang="pt-br">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fatec Food</title><!-- 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"> -->
+    <title>Fatec Food</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
     <link rel="stylesheet" href="./bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="./CSS/styles.css" />
+    <link rel="stylesheet" href="./CSS/styles.css">
 </head>
 
 <body>
@@ -56,52 +63,61 @@ require_once("utils/connetion.php");
                 </ul>
 
             </div>
-            <ul class="nav navbar-nav navbar-right">
-                <?php
-                if (!isset($_SESSION['login']) || $_SESSION['login'] != true) { ?>
-
-                    <li>
-
-                        <a class="reset_decor" href="login.php ">Login</a>&nbsp;&nbsp;
-                    </li>
 
 
-                <?php } else { ?>
 
-                    <div class="btn-button">
-                        <li class="nav-item dropdown">
-
-                            <button class="btn dropdown-toggle navbar-btn" type="button" data-bs-toggle="dropdown">
-
-                                <?= substr($_SESSION['nome'], 0, 9) ?>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
-
-                                    <a class="dropdown-item" href="cadastro.php?id=<?= $_SESSION['id'] ?>">
-                                        Minha Conta
-                                    </a>
-                                </li>
-                                <li>
-
-                                    <a class="dropdown-item" href="logout.php">
-                                        sair
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </div>
-                <?php } ?>
-            </ul>
 
             <!-- ////////////////////////////////////////////////////////////////////// -->
-
             <?php
             if (isset($_SESSION['carrinho'])) { ?>
-                <a href="cardapio.php?limpar=1"><button class="btn btn-outline-secondary text-end">Limpar Carrinho</button></a>
+                <a href="header.php?limpar=1"><button class="btn btn-outline-secondary text-end">Limpar Carrinho</button></a>
 
+                <?php
+            
+        }
+            ?>
+        </div>
+
+
+        <ul class="navbar-nav navbar-right">
+            <?php
+            if (!isset($_SESSION['login']) || $_SESSION['login'] != true) { ?>
+
+                <li>
+
+                    <a class="reset_decor" href="login.php ">Login</a>&nbsp;&nbsp;
+                </li>
+
+
+            <?php } else { ?>
+
+                <div class="btn-button">
+                    <li class="nav-item dropdown">
+
+                        <button class="btn dropdown-toggle navbar-btn" type="button" data-bs-toggle="dropdown">
+
+                            <?= substr($_SESSION['nome'], 0, 9) ?>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+
+                                <a class="dropdown-item" href="cadastro.php?id=<?= $_SESSION['id'] ?>">
+                                    Minha Conta
+                                </a>
+                            </li>
+                            <li>
+
+                                <a class="dropdown-item" href="logout.php">
+                                    sair
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </div>
             <?php } ?>
+        </ul>
+
 
 
     </nav>

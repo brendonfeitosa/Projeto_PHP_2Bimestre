@@ -1,9 +1,9 @@
 <?php 
 require_once("./header.php");
-
+//print_r($_SESSION);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $cod = $_POST['cod'];
-    $qtde = $_POST['qtde'];
+    $qtde = $_POST['qtd'];
 
 }
 if (empty($_SESSION['carrinho'])) {

@@ -34,67 +34,70 @@
                 // Exibir os resultados
 
         ?>
+                <section class="container_card">
+                    <?php
+                    if (mysqli_num_rows($result) > 0) { ?>
+                        <div class="row text-center">
 
+                            <?php
+                            while ($row = mysqli_fetch_assoc($result)) { ?>
+                                <div class="card text-center m-2" style="width: 16rem; height: 410px;">
+                                    <form action="carrinho.php" method="post">
 
-                <?php
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <div class="card text-center bg-light m-2 d-flex " style="width: 16rem;">
-                            <strong class="card-text1"><?= $row['nome'] ?></strong>
-                            <img src="<?= $row['image_url'] ?>" class="card-img-top" alt="...">
-                            <div class="card-title">R$ <?= $row['preco'] ?></div>
-                            <p class="card-text truncate-3l"><?= substr($row['descricao'], 0, 40) ?></p>
-                            <div style="margin-top: 5px;">
+                                        <strong class="card-text1"><?= $row['nome'] ?></strong>
+                                        <img src="<?= $row['image_url'] ?>" class="card-img-top" alt="...">
+                                        <div class="card-title">R$ <?= $row['preco'] ?></div>
+                                        <p class="card-text truncate-3l"><?= substr($row['descricao'], 0, 40) ?></p>
+                                        <div style="margin-top: 5px;">
 
-                                Quantidade: <input type="number" name="qtd" class="tm_input" min="1" value="1" /> <br />
-                                <input type="submit" name="addcarrinho" id="addcarrinho" class="btn btn-success" value="Adicionar ao Carrinho" />
-                            </div>
+                                            Quantidade: <input type="number" name="qtd" class="tm_input" min="1" value="1" /> <br />
+                                            <input type="submit" name="addcarrinho" id="addcarrinho" class="btn btn-success" value="Adicionar ao Carrinho" />
+                                        </div>
+                                    </form>
+                                </div>
+                        <?php }
+                        } else {
+                            echo '<p class="text-center"><h3>Produto não encontrado.</h3></p>';
+                        } ?>
                         </div>
-        <?php }
-                } else {
-                    echo '<p class="text-center"><h3>Produto não encontrado.</h3></p>';
-                }
+                <?php
 
                 // Fechar a conexão com o banco de dados
                 mysqli_close($conn);
             }
         }
-        ?>
-    </form>
+                ?>
 
+                </section>
+                <section>
 
-    <!--////////////////////////////////////////////////////////////////////////////////  -->
-    <form class="ml-3 d-inline-block " method="GET">
-        <br />
-        <select class="form-select form-select-sm" name="categoria" onchange="this.form.submit()">
-            <option value="">Selecione a categoria</option>
-            <?php
+                    <!--////////////////////////////////////////////////////////////////////////////////  -->
+                    <form class="ml-3 d-inline-block " method="GET">
+                        <br />
+                        <select class="form-select form-select-sm" name="categoria" onchange="this.form.submit()">
+                            <option value="">Selecione a categoria</option>
+                            <?php
 
-            // Conexão com o banco de dados
-            $conn;
-            if ($conn->connect_error) {
-                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-            }
+                            // Consulta para obter as categorias disponíveis
+                            $sql1 = "SELECT tipo_cod, tipo_nome FROM Tipo_produto";
+                            $resultado = $conn->query($sql1);
 
-            // Consulta para obter as categorias disponíveis
-            $sql1 = "SELECT tipo_cod, tipo_nome FROM Tipo_produto";
-            $resultado = $conn->query($sql1);
+                            // Exibição das opções da lista suspensa com as categorias
+                            if ($resultado->num_rows > 0) {
+                                while ($row = $resultado->fetch_assoc()) { ?>
 
-            // Exibição das opções da lista suspensa com as categorias
-            if ($resultado->num_rows > 0) {
-                while ($row = $resultado->fetch_assoc()) { ?>
-
-            <?php
-                    $tipoCod = $row["tipo_cod"];
-                    $tipoNome = $row["tipo_nome"];
-                    echo "<option value='$tipoCod'>$tipoNome</option>";
-                }
-            }
-            ?>
-        </select>
-    </form>
+                            <?php
+                                    $tipoCod = $row["tipo_cod"];
+                                    $tipoNome = $row["tipo_nome"];
+                                    echo "<option value='$tipoCod'>$tipoNome</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </form>
 </div>
 <!--  -->
+</section>
 <?php
 // Verificar se uma categoria foi selecionada
 if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
@@ -102,29 +105,23 @@ if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
 
 
 
-    // Conexão com o banco de dados
-    $conn;
-    if ($conn->connect_error) {
-        die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-    }
-
     // Consulta para obter os produtos da categoria selecionada
     $sql1 = "SELECT * FROM Produto WHERE tipo_cod = '$categoria'";
     $result = $conn->query($sql1);
+    // Exibição dos resultados da pesquisa
 ?>
     <section class="container_card">
-        <div class="row text-center">
-            <div class="text">
-                <h4 class="text-center">resultados</h4>
-            </div>
-            <?php
-            // Exibição dos resultados da pesquisa
-            if ($result->num_rows > 0) { ?>
+
+        <?php if ($result->num_rows > 0) { ?>
+            <div class="row text-center">
+                <div class="text">
+                    <h4 class="text-center">resultados</h4>
+                </div>
 
                 <?php
                 while ($row = $result->fetch_assoc()) { ?>
-                    <form action="carrinho.php" method="post">
-                        <div class="card text-center m-2" style="width: 16rem; height: 410px;">
+                    <div class="card text-center m-2" style="width: 16rem; height: 410px;">
+                        <form action="carrinho.php" method="post">
                             <strong class="card-title1"><?= $row['nome'] ?></strong>
                             <input type="hidden" name="cod" value="<?= $row['codigo'] ?>">
                             <input type="hidden" name="preco" value="<?= $row['preco'] ?>">
@@ -137,23 +134,23 @@ if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
                                 Quantidade: <input type="number" name="qtd" class="tm_input" min="1" value="1" /> <br />
                                 <input type="submit" name="addcarrinho" id="addcarrinho" class="btn btn-success" value="Adicionar ao Carrinho" />
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 <?php }
                 ?>
 
+            </div>
+    <?php
+        } else {
 
-        <?php
-            } else {
-
-                echo '<p class="text-center"><h3>Produto não encontrado.</h3></p>';
-            }
-
-
-            $conn->close();
+            echo '<p class="text-center"><h3>Produto não encontrado.</h3></p>';
         }
 
-        ?>
 
-        </div>
+        $conn->close();
+    }
+
+    ?>
+
+
     </section>

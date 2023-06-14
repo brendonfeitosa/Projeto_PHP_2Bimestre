@@ -183,15 +183,25 @@ a .reset_decor:hover {
 }
 
 .container_card {
-    width: 76%;
+    width: 90%;
     flex-direction: row;
     margin-left: auto;
     margin-right: auto;
+    
     justify-content: start;
+    
 
 
 }
+.item-container{
+   
+    
+}
 
+.card-menu{
+    margin-left: 15px;
+    
+}
 .demo {
     margin-bottom: 12px;
 }

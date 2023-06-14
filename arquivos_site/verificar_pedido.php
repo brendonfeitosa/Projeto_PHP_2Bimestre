@@ -10,6 +10,9 @@ $vl_total_item = 0;
 
 //print_r($_SESSION['carrinho']);
 
+
+
+
 $sql = "select * from produto";
 $result = $conn->query($sql);
 
@@ -29,8 +32,8 @@ if (isset($_POST['finalizar'])) {
 
 
     $sql2 = "INSERT INTO pedido (tipo_pagamento_cod,cliente_cli_id, valor_total) VALUES ({$_POST['pgto']}, {$_SESSION['id']},$vl_total_item)";
-    print_r($_POST);
-    echo $sql2;
+    //   print_r($_POST);
+    // echo $sql2;
     $result = $conn->query($sql2);
     $ultimopedido = "SELECT MAX(ped_num) as maxId FROM pedido;";
     $result3 = $conn->query($ultimopedido);
@@ -67,11 +70,11 @@ if (isset($_POST['finalizar'])) {
             <thead>
                 <tr>
 
-                    <th scope="col">Nome</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Valor Unitario</th>
-                    <th scope="col">Valor Total</th>
-                    <th scope="col">---</th>
+                    <th scope="col" >Nome</th>
+                    <th scope="col" class="text-center" >Quantidade</th>
+                    <th scope="col"  class="text-center">Valor Unitario</th>
+                    <th scope="col" class="text-center">Valor Total</th>
+                    <th scope="col"  class="text-center">Excluir</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,27 +83,30 @@ if (isset($_POST['finalizar'])) {
                     <?php
 
                     // print_r($_SESSION['carrinho']);
-
+                    $somaTotal = 0;
+                   // print_r($_SESSION);
                     foreach ($_SESSION['carrinho'] as $chave => $produto) {
                         if ($produto != null) { ?>
                             <tr>
 
                                 <td><?= $produto['nomeprod'] ?></td>
-                                <td><?= $produto['qtd'] ?></td>
-                                <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
-                                <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
+                                <td  class="text-center">
+                                    <?= $produto['qtd'] ?>
+                                </td>
+                                <td  class="text-center">R$
+
+                                    <?= number_format($produto['preco'], 2, ',', '.') ?>
+                                </td>
+                                <td  class="text-center">R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
 
                                 <td class="text-center">
 
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
 
 
-                                        <button class="btn btn-primary">
-                                            <a style="color:white; text-decoration: none;" href="produto.php?cod=<?= $pcod ?>">Editar</a>
-
-                                        </button>
+                                        
                                         <button class="btn btn-danger" onclick="confirm('Deseja excluir o registro?')">
-                                            <a style="color:white; text-decoration: none;" href="delete.php?id=<?= $pcod ?>&tb=2">Excluir</a>
+                                            <a style="color:white; text-decoration: none;" href="alterarCarrinho.php?item=<?= $produto['cod']?>">Excluir</a>
 
                                         </button>
 
@@ -109,8 +115,18 @@ if (isset($_POST['finalizar'])) {
                                 </td>
 
                             </tr>
-                    <?php }
+
+                    <?php
+                    $somaTotal += $produto['preco'] * $produto['qtd'];
+
+                        }
                     } ?>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th  class="text-center">Total</th>
+                        <th  class="text-center">R$ <?= number_format($somaTotal,2,',','.')?></th>
+                        <th colspan="2"></th>
+                    </tr>
             </tbody>
         </table>
 

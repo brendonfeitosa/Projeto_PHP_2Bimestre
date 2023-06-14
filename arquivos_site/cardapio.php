@@ -100,7 +100,7 @@ if (isset($_POST['finalizarpedido'])) {
             <tbody>
                 <?php
 
-                // print_r($_SESSION['carrinho']);
+              //  print_r($_SESSION['carrinho']);
 
                 foreach ($_SESSION['carrinho'] as $chave => $produto) { 
                     

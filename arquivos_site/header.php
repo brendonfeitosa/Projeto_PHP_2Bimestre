@@ -15,6 +15,7 @@ if (isset($_GET['limpar'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <title>Fatec Food</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
@@ -30,7 +31,7 @@ if (isset($_GET['limpar'])) {
 
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color:#ee8f54; z-index: 1000;">
         <div class="container-fluid col-11 m-auto">
-            <a class="navbar-brand" href="#"><img src="./img/logo_size_invertg40.jpg" alt=""></a>
+           
             <button class="navbar-toggler btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,16 +49,9 @@ if (isset($_GET['limpar'])) {
                     <li class="nav-item">
                         <a class="nav-link  fw-bolder" href="pedidos.php">Pedidos</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="cardapio.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cardápio</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item fw-bolder" href="cardapio.php">Cardápio</a></li>
-                            <hr>
-                            <li><a class="dropdown-item fw-bolder font" href="cardapio.php#massas">Massas</a></li>
-                            <li><a class="dropdown-item fw-bolder" href="cardapio.php#pizzas">Pizzas</a></li>
-                            <li><a class="dropdown-item fw-bolder " href="cardapio.php#sobremesas">Sobremesas</a></li>
-                        </ul>
-
+                    <li class="nav-item">
+                        <a class="nav-link fw-bolder" href="cardapio.php" role="button">Cardápio</a>
+                     
                     </li>
 
                 </ul>
@@ -70,7 +64,8 @@ if (isset($_GET['limpar'])) {
             <!-- ////////////////////////////////////////////////////////////////////// -->
             <?php
             if (isset($_SESSION['carrinho'])) { ?>
-                <a href="header.php?limpar=1"><button class="btn btn-outline-secondary text-end">Limpar Carrinho</button></a>
+                <a href="header.php?limpar=1">
+                    <button class="btn btn-outline-secondary text-end">Limpar Carrinho</button></a>
 
                 <?php
             
@@ -79,7 +74,7 @@ if (isset($_GET['limpar'])) {
         </div>
 
 
-        <ul class="navbar-nav navbar-right">
+        <ul class="navbar-nav navbar-right" style="margin-right: 100px;">
             <?php
             if (!isset($_SESSION['login']) || $_SESSION['login'] != true) { ?>
 
@@ -91,7 +86,7 @@ if (isset($_GET['limpar'])) {
 
             <?php } else { ?>
 
-                <div class="btn-button">
+                <div class="btn-button ">
                     <li class="nav-item dropdown">
 
                         <button class="btn dropdown-toggle navbar-btn" type="button" data-bs-toggle="dropdown">

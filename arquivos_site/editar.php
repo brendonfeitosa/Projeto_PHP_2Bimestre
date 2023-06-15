@@ -50,8 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $register_err = "Não foi possível atualizar os dados";
         } else {
             header("Location: login.php");
-            unset($_SESSION['login']);
-            session_destroy();
             exit();
         }
     }

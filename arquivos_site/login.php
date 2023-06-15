@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
            /*  echo $_POST['senha']. " ".print_r($data); */
 
             if (password_verify($password, $data['senha'])) {
-                session_start();
+                //session_start();
                 $_SESSION['login'] = true;
                 $_SESSION['id'] = $data['cli_id'];
                 $_SESSION['nome'] = $data['nome'];

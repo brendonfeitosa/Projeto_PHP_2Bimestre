@@ -22,7 +22,7 @@ $peso = "";
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // print_r($_POST);
+  //  print_r($_POST);
     $cod = $_POST['cod'];
     $nome = $_POST['pnome'];
     $promo = 0;
@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['promo'])) {
         $promo = $_POST['promo'];
     }
-    if ($cod === 0) {
-        echo $cod." entro";
-        //$sql = "insert into produto(tipo_cod,nome,descricao,preco,promo,image_url,peso) values($tp,'$nome','$desc',$preco,$promo,'$img',$peso);"; 
+    if ($cod == 0) {
+       // echo $cod." entro";
+        $sql = "insert into produto(tipo_cod,nome,descricao,preco,promo,image_url,peso) values($tp,'$nome','$desc',$preco,$promo,'$img',$peso);"; 
         $sql = "select count(*) as produtos from produto where nome = lower('{$nome}');";
 
         $result = $conn->query($sql);
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         } else {
 
             $sql = "insert into produto(tipo_cod,nome,descricao,preco,promo,image_url,peso) values($tp,'$nome','$desc',$preco,$promo,'$img',$peso);";
-             echo $sql;
+          //   echo $sql;
             $result = $conn->query($sql);
             if (!$result) {
                 $msg_err = "<span class='alert alert-warning'> não foi possivel cadastro</span>";
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         
 
         $sql = "update produto set tipo_cod =$tp ,nome ='$nome' ,descricao = '$desc' ,preco = $preco ,promo = $promo,image_url = '$img', peso = $peso ";
-        $sql .=" where tipo_cod = {$tp};";
+        $sql .=" where codigo = {$cod};";
          //echo $sql;   
             $result = $conn->query($sql);
           

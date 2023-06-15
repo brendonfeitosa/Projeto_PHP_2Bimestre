@@ -54,14 +54,15 @@ if (isset($_POST['finalizarpedido'])) {
             <h4 class="text-center">CARDÁPIO</h4>
         </div>
         <?php while ($data = mysqli_fetch_assoc($result)) {
-
+//print_r($data);
         ?>
+        <br />
             <div class="card m-2" style="width: 16rem;height: 410px; ">
-
                 <form action="carrinho.php" method="post">
                     <input type="hidden" name="cod" value="<?= $data['codigo'] ?>">
                     <input type="hidden" name="preco" value="<?= $data['preco'] ?>">
                     <input type="hidden" name="nomeprod" value="<?= $data['nome'] ?>">
+                    <input type="hidden" name="promo" value="<?= $data['promo'] ?>">
                     <strong class="card-text1"><?= $data['nome'] ?> </strong>
                     <img src="<?= $data['image_url'] ?>" class="img_card2" alt="...">
 
@@ -105,6 +106,7 @@ if (isset($_POST['finalizarpedido'])) {
                 foreach ($_SESSION['carrinho'] as $chave => $produto) { 
                     
                       if($produto != null){
+                       // print_r($produto);
                     ?>
                     <tr>
                         <td><?= $produto['nomeprod'] ?></td>

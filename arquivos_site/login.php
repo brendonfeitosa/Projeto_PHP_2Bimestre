@@ -1,6 +1,6 @@
 <?php
 require("./header.php");
-require_once("utils/connection.php");
+require_once("utils/connetion.php");
 
 
 $username = $password = $login_err = $email = "";

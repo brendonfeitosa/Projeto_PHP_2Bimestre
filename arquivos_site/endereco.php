@@ -1,7 +1,7 @@
 <?php
 
 require("./header.php");
-require_once("./utils/connection.php");
+require_once("./utils/connetion.php");
 require_once("./utils/buscarCep.php");
 $cep = "";
 $bairro = "";

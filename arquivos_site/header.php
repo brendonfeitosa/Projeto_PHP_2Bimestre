@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("utils/connection.php");
+require_once("utils/connetion.php");
 
 if (isset($_GET['limpar'])) {
 
@@ -22,7 +22,6 @@ if (isset($_GET['limpar'])) {
     <link rel="stylesheet" href="./bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="./CSS/styles.css">
-
 </head>
 
 <body>
@@ -32,7 +31,7 @@ if (isset($_GET['limpar'])) {
 
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color:#ee8f54; z-index: 1000;">
         <div class="container-fluid col-11 m-auto">
-
+           
             <button class="navbar-toggler btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -52,7 +51,7 @@ if (isset($_GET['limpar'])) {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bolder" href="cardapio.php" role="button">Cardápio</a>
-
+                     
                     </li>
 
                 </ul>
@@ -63,21 +62,15 @@ if (isset($_GET['limpar'])) {
 
 
             <!-- ////////////////////////////////////////////////////////////////////// -->
-
             <?php
             if (isset($_SESSION['carrinho'])) { ?>
+                <a href="header.php?limpar=1">
+                    <button class="btn btn-outline-secondary text-end">Limpar Carrinho</button></a>
 
-                <a href="header.php?limpar=1" class="link-dark link-offset-2 link-underline-opacity-10 link-underline-opacity-10-hover" style="font-size: 13px;">
-                    Esvaziar (<?= count($_SESSION['carrinho']) ?>) &nbsp; </a>
-
-            <?php
-
-            } else { ?>
-
-                <span style="font-size: 11px;">Vazio (0) &nbsp;</span>
-            <?php  }
+                <?php
+            
+        }
             ?>
-            <span> <img src="./img/shoppingcart_80945.svg" alt="" width="13px" /></span>
         </div>
 
 
@@ -93,14 +86,14 @@ if (isset($_GET['limpar'])) {
 
             <?php } else { ?>
 
-                <div class="btn-button">
+                <div class="btn-button ">
                     <li class="nav-item dropdown">
 
                         <button class="btn dropdown-toggle navbar-btn" type="button" data-bs-toggle="dropdown">
 
-                            <span style="font-size: 13px;"> <?= substr($_SESSION['nome'], 0, 9) ?></span>
+                            <?= substr($_SESSION['nome'], 0, 9) ?>
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-right" style="font-size: 13px;">
+                        <ul class="dropdown-menu dropdown-menu-right">
                             <li>
 
                                 <a class="dropdown-item" href="cadastro.php?id=<?= $_SESSION['id'] ?>">

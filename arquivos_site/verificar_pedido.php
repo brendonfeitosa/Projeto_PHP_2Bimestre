@@ -10,9 +10,7 @@ $vl_total_item = 0;
 
 //print_r($_SESSION['carrinho']);
 
-if ($_SESSION['carrinho'] == null) {
-    header("Location:cardapio.php");
-}
+
 
 
 $sql = "select * from produto";
@@ -36,13 +34,11 @@ if (isset($_POST['finalizar'])) {
     $sql2 = "INSERT INTO pedido (tipo_pagamento_cod,cliente_cli_id, valor_total) VALUES ({$_POST['pgto']}, {$_SESSION['id']},$vl_total_item)";
     //   print_r($_POST);
     // echo $sql2;
-    $endcod = $_POST['endereco'];
     $result = $conn->query($sql2);
     $ultimopedido = "SELECT MAX(ped_num) as maxId FROM pedido;";
     $result3 = $conn->query($ultimopedido);
 
     $pedidoNum = mysqli_fetch_assoc($result3);
-    $pdNum = $pedidoNum['maxId'];
 
     $sql2 = "";
     if ($result) {
@@ -55,22 +51,11 @@ if (isset($_POST['finalizar'])) {
 
                 $sql2 = "INSERT INTO produto_has_pedido ( produto_codigo,pedido_ped_num,qtde,valorUinitario, desconto,subtotal)";
                 $sql2 .= "  VALUES($cod,{$pedidoNum['maxId']},$qtd,$vlUnitario,0,$vlTotal);";
-                //  $result = $conn->query($sql2);
-               // echo $sql2." ".$endcod;
+
+                $result = $conn->query($sql2);
             }
         }
     }
-
-    //-----------------------------pagamento--------------------------------------//
-
-    // Realizar pagamento 
-    header("Location:pagamento.php?numped={$pdNum}&endcod={$endcod}");
-    //---------------------------------------------------------------------------//
-
-
-
-
-
 }
 
 
@@ -81,84 +66,47 @@ if (isset($_POST['finalizar'])) {
         <div class="text">
             <h4 class="text-center">FINALIZAR PEDIDO</h4>
         </div>
-        <div class="cl_filtro" style="margin-left: 0;">
-            <label for="">Endereços de Entrega</label>
-            <select class="form-select form-select-sm" name="endereco">
-
-                <?php
-                $endcod = 0;
-                // Consulta para obter endereços
-                $sql1 = "SELECT end_cod, bairro,logradouro, numero, cidade,comp ";
-                $sql1 .= "FROM bd_resto.endereco where cliente_cli_id =" . $_SESSION['id'];
-                $resultado = $conn->query($sql1);
-
-                // Exibição das opções da lista suspensa com as categorias
-                if ($resultado->num_rows > 0) {
-                    while ($rows = $resultado->fetch_assoc()) {
-                        $endcod = $rows['end_cod'];
-                        $rua = $rows['logradouro'];
-                        $numero = $rows['numero'];
-                        $bairro = $rows['bairro'];
-                        $cid = $rows['cidade'];
-                        $comp = $rows['comp'];
-
-                ?>
-
-                        <option value="<?= $endcod ?>">
-                            <?= $bairro ?>&nbsp;
-                            Rua: <?= $rua ?>&nbsp;
-                            Nº <?= $numero ?>&nbsp;
-                            Compl.<?= $comp ?>&nbsp;
-                            Cidade: <?= $cid ?>&nbsp;
-
-                        </option>";
-                <?php  }
-                }
-                ?>
-            </select>
-        </div>
-        <hr>
         <table class="table">
             <thead>
                 <tr>
 
-                    <th scope="col">Nome</th>
-                    <th scope="col" class="text-center">Quantidade</th>
-                    <th scope="col" class="text-center">Valor Unitario</th>
+                    <th scope="col" >Nome</th>
+                    <th scope="col" class="text-center" >Quantidade</th>
+                    <th scope="col"  class="text-center">Valor Unitario</th>
                     <th scope="col" class="text-center">Valor Total</th>
-                    <th scope="col" class="text-center">Excluir</th>
+                    <th scope="col"  class="text-center">Excluir</th>
                 </tr>
             </thead>
             <tbody>
                 <form method="post" action="verificar_pedido.php" class="text-center">
-                    <input type="hidden" name="endereco" value="<?= $endcod ?>">
+
                     <?php
 
                     // print_r($_SESSION['carrinho']);
                     $somaTotal = 0;
-                    // print_r($_SESSION);
+                   // print_r($_SESSION);
                     foreach ($_SESSION['carrinho'] as $chave => $produto) {
                         if ($produto != null) { ?>
                             <tr>
 
                                 <td><?= $produto['nomeprod'] ?></td>
-                                <td class="text-center">
+                                <td  class="text-center">
                                     <?= $produto['qtd'] ?>
                                 </td>
-                                <td class="text-center">R$
+                                <td  class="text-center">R$
 
                                     <?= number_format($produto['preco'], 2, ',', '.') ?>
                                 </td>
-                                <td class="text-center">R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
+                                <td  class="text-center">R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
 
                                 <td class="text-center">
 
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
 
 
-
+                                        
                                         <button class="btn btn-danger" onclick="confirm('Deseja excluir o registro?')">
-                                            <a style="color:white; text-decoration: none;" href="alterarCarrinho.php?item=<?= $produto['cod'] ?>">Excluir</a>
+                                            <a style="color:white; text-decoration: none;" href="alterarCarrinho.php?item=<?= $produto['cod']?>">Excluir</a>
 
                                         </button>
 
@@ -169,13 +117,14 @@ if (isset($_POST['finalizar'])) {
                             </tr>
 
                     <?php
-                            $somaTotal += $produto['preco'] * $produto['qtd'];
+                    $somaTotal += $produto['preco'] * $produto['qtd'];
+
                         }
                     } ?>
                     <tr>
                         <th colspan="2"></th>
-                        <th class="text-center">Total</th>
-                        <th class="text-center">R$ <?= number_format($somaTotal, 2, ',', '.') ?></th>
+                        <th  class="text-center">Total</th>
+                        <th  class="text-center">R$ <?= number_format($somaTotal,2,',','.')?></th>
                         <th colspan="2"></th>
                     </tr>
             </tbody>
@@ -193,12 +142,8 @@ if (isset($_POST['finalizar'])) {
             <br />
             <br />
 
-            <input type="submit" class="btn btn-outline-success" name="finalizar" value="Realizar Pagamento" />
+            <input type="submit" class="btn btn-outline-success" name="finalizar" value="Finalizar Pedido" />
         </div>
-
-        <!-- ===================================================================================================================== -->
-
-        <!-- ------------------------------------------------------------------------------------------------------------------- -->
 
         </form>
 

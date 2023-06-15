@@ -70,17 +70,6 @@ a .reset_decor:hover {
 
 }
 
-.img_card2 {
-
-    max-height: 180px;
-    align-self: center;
-    width: 231px;
-    height: 254px;
-    border-radius: 8px;
-    object-fit: cover;
-
-}
-
 .img_tama {
     width: 290px;
     padding: 18px;
@@ -183,25 +172,19 @@ a .reset_decor:hover {
 }
 
 .container_card {
+<<<<<<< HEAD
     width: 80.7%;
+=======
+    width: 76%;
+>>>>>>> parent of 075c600 (Merge branch 'main' into Evelin)
     flex-direction: row;
     margin-left: auto;
     margin-right: auto;
-    
     justify-content: start;
-    
 
 
 }
-.item-container{
-   
-    
-}
 
-.card-menu{
-    margin-left: 15px;
-    
-}
 .demo {
     margin-bottom: 12px;
 }
@@ -211,32 +194,6 @@ a .reset_decor:hover {
     width: 85%;
 }
 
-.forms {
+.forms{
     padding-left: 10px;
 }
-
-.text-descr {
-
-    margin-top: 8px;
-    height: 65px;
-    padding: 2px;
-   
-    margin-bottom: 8px;
-    text-align: start;
-}
-    .tm_input{
-        width: 50px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        border-color: rgb(212, 244, 250);
-
-        outline-color: aquamarine;
-        outline-width: 0.05rem;
-     
- }
-
- .cl_filtro{
-    width: 76%;
-    margin-left: auto;
-    margin-right: auto;
- }

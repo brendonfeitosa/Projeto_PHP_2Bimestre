@@ -1,4 +1,4 @@
-<?php require_once('./header.php'); ?>
+<?php require('./header.php'); ?>
 
 <!-- Carousel -->
 <div id="demo" class="carousel slide centralizar" data-bs-ride="carousel">
@@ -24,7 +24,7 @@
             <img src="./img/massa1.jpg" alt="New York" class="d-block img_banner">
         </div>
         <div class="carousel-item">
-            <img src="./img/pudim2.jpg" alt="New York" class="d-block img_banner">
+            <img src="./img/torta1.jpg" alt="New York" class="d-block img_banner">
         </div>
         <div class="carousel-item">
             <img src="./img/pudim.png" alt="New York" class="d-block img_banner">
@@ -50,80 +50,23 @@ $result = $conn->query($sql);
 
 <form action="" method="post">
     <section class="container_card">
-        <div class="row text-center">
+        <div class="row text-center item-container">
             <?php
             while ($data = mysqli_fetch_array($result)) { ?>
 
 
-                <div class="card m-2" style="width:16rem; padding:2px; ">
+                <div class="card m-2 card-menu" style="width:16rem; padding:2px; ">
                     <strong class="card-text1"><?= $data['nome'] ?> </strong>
-                    <!--   <div class="img_tama" alt="..."> -->
-
+                 
                     <img src="<?= $data['image_url'] ?>" class="img_card" alt="...">
-                    <!-- </div> -->
+                    
                     <p class="card-text"><?= substr($data['descricao'], 0, 40) ?></p>
-                    <!-- <div class="bts">
-                        <button type="button" class="btn2" name="btn" id="subtract">
-                            <img src="./public/icons/icons8-menos-96.svg" class="tt" width="10" alt="">
-                        </button>
-                        <input class="n-pedido" readonly type="text" id="<?= $data['codigo'] ?>" name="<?= $data['codigo'] ?>" value="" size="2">
-                        <button type="button" class="btn2" id="add" value="?" name="btn" onclick="addCarrinho();">
-                            <img src="./public/icons/mais.svg" width="10" alt="">
-                        </button>
-                    </div> -->
+                  
                 </div>
 
 
 
             <?php } ?>
-
-
-            <script type="text/javascript">
-                function addCarrinho(id) {
-                    // alert(cp);
-
-                    alert(id);
-                    alert(document.getElementById(id).value)
-
-                    let x = document.getElementById(id).value;
-                    if (x == "") {
-
-                        document.getElementById(id).value = 1;
-                    } else {
-
-                        document.getElementById(id).value = parseInt(x) + 1;
-                    }
-
-                }
-                var btn = document.getElementById('add');
-                btn.onclick = function() {
-
-
-                    //alert(this.name); // alerta 'seuid'
-                    let x = document.getElementById('pro').value;
-                    if (x == "") {
-
-                        document.getElementById('pro').value = 1;
-                    } else {
-
-                        document.getElementById('pro').value = parseInt(x) + 1;
-                    }
-
-                }
-
-                var btn = document.getElementById('subtract');
-                btn.onclick = function() {
-
-
-                    //alert(this.name); // alerta 'seuid'
-                    let x = document.getElementById('pro').value;
-                    if (x > 0) {
-
-                        document.getElementById('pro').value = parseInt(x) - 1;
-                    }
-
-                }
-            </script>
         </div>
 
 

@@ -1,18 +1,10 @@
-<?php
-/**
- * Create Database Connection
- */
+<?php 
+  define('DB_HOST','localhost');
+  define('DB_USER','root');
+  define('DB_PASSWORD','ander22pa');
+  define('DB_NAME','bd_resto');
+  $conn = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
-define ( 'DB_HOST', 'localhost' );
-define ( 'DB_USER', 'root' );
-define ( 'DB_PASSWORD', '' );
-define ( 'DB_NAME', 'bd_resto' );
-
-// Create connection using mysqli_connect()
-$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
-// If $conn is false, connection is failed
-if (!$conn ) {
-  die("Failed to connect to MySQL: " . mysqli_connect_error());
-}
-?>
+  if(!$conn){
+      die("Failed to conect to MylSql".mysqli_connect_error());
+  }

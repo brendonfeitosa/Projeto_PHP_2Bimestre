@@ -1,5 +1,4 @@
 <?php
-require_once("../utils/connetion.php");
 require("./header.inc.php");
 if (!isset($_SESSION['email']) || $_SESSION['email'] != true) {
     header("Location: login_adm.php");
@@ -93,7 +92,7 @@ if (isset($_GET['cod'])) {
 <h3>Gerenciamento de Produtos</h3>
 <form action="" method="post">
 
-    <section class="reset_width">
+    <section class="container_rel">
         <h5>Informe os dados</h5>
         <table class="table">
 
@@ -196,7 +195,7 @@ if (isset($_GET['cod'])) {
     <section id="container">
 
 
-        <table class="table">
+        <table class="table container_rel">
 
             <thead>
                 <tr>

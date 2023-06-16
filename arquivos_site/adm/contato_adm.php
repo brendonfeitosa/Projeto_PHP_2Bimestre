@@ -1,7 +1,6 @@
-<?php require_once("header.inc.php") ?>
+<?php require_once("header.inc.php") ;
 
-<?php
-require_once("../utils/connetion.php");
+
 
 $sql = "SELECT * FROM contato";
 $result = $conn->query($sql);

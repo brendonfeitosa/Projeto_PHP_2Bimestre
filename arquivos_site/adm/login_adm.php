@@ -1,6 +1,5 @@
 <?php
 require("header.inc.php");
-require_once("../utils/connetion.php");
 
 
 $username = $password = $login_err = "";
@@ -16,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $sql = "select adm_id, nome,senha from user where email = '{$email}'";
 
-        echo $sql;
+        //echo $sql;
         $result = $conn->query($sql);
         $data = mysqli_fetch_array($result);
 
@@ -64,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Login">
                 </div>
-                <p>Não possui uma conta? <a href="register.php">Registre-se agora</a>.</p>
+               
             </form>
 
         </section>
@@ -74,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p></p>
     </main>
 
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe' crossorigin='anonymous'></script>
+  
     <script src="../bootstrap-5.3.0-alpha3-dist/js/bootstrap.bundle.min.js"></script>
 
     <?php require("../footer.php"); ?>

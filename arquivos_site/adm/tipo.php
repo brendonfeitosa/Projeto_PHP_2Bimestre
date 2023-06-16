@@ -1,5 +1,4 @@
 <?php
-require_once("../utils/connetion.php");
 
 require("./header.inc.php");
 if (!isset($_SESSION['email']) || $_SESSION['email'] != true) {
@@ -136,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <section class="form_tp">
     <h3>Gerenciamento de tipos</h3>
 
-    <?php require_once("../utils/connetion.php") ?>
+ 
     <form action="" method="post">
         <table class="table table-striped">
             <thead>

@@ -2,25 +2,51 @@
 require_once("./header.php");
 require_once("./utils/connection.php");
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-}
+
+$num = "";
+$somaTotal = 0;
+$identificador = "";
+$endcod = "";
 //print_r($_GET);
 
 if (isset($_GET['numped'])) {
     $num = $_GET['numped'];
     $endcod = $_GET['endcod'];
-    $sqlsum  = "select valor_total from pedido where ped_num = {$_GET['numped']};";
-    $rest = $conn->query($sqlsum);
-    $ttl = mysqli_fetch_assoc($rest);
-    // print_r($ttl);
+    $sql1  = "select p.valor_total, t.nome from pedido p, tipo_pagamento t ";
+    $sql1 .= "where p.tipo_pagamento_cod = t.cod and ped_num = {$_GET['numped']};";
+    $rest = $conn->query($sql1);
+    $row = mysqli_fetch_assoc($rest);
+    $identificador = $row['nome'];
+}
+
+if (isset($_POST['btnPagar'])) {
+    $somaTotal = $_POST['total'];
+
+    //----------------- validar metodo de pagamento ------------------------
+    $identificador = $_POST['identificador'];
+    // -------------------------------------------------------------------
+
+    $num = $_POST['num'];
+
     //-----------------------------pagamento--------------------------------------//
-    $sql = "INSERT INTO pagamento(identificador,valor,ped_num,cod_entrega) ";
-    $sql .= " VALUES('cartão',{$ttl['valor_total']},$num, $endcod);";
-    //echo $sql;
+    $sql = "INSERT INTO pagamento(identificador,valor,ped_num) ";
+    $sql .= " VALUES('{$identificador}',{$somaTotal},$num);";
+
+    $result = $conn->query($sql);
+
+    if ($result) {
+        
+        unset($_SESSION['carrinho']);
+        header("Location:pedidos.php");
+    } else {
+        $msg_err = "Não foi possivel realizar o pagameto";
+        header("Location:verificar_pedido.?msg_err={$msg_err}");
+    }
+
 
     //---------------------------------------------------------------------------//
-
 }
+
 
 
 ?>
@@ -42,9 +68,7 @@ if (isset($_GET['numped'])) {
 
                 <?php
 
-                // print_r($_SESSION['carrinho']);
-                $somaTotal = 0;
-                // print_r($_SESSION);
+
                 foreach ($_SESSION['carrinho'] as $chave => $produto) {
                     if ($produto != null) { ?>
                         <tr>
@@ -74,16 +98,18 @@ if (isset($_GET['numped'])) {
                     <th colspan="2"></th>
                 </tr>
                 <tr>
-                    <th colspan="2">numero cartão</th>
+                    <th style="text-align: end;"><?= $identificador ?>:</th>
+                    <td style="background-color: blue;"><input type="text" name="identificador"></td>
                     <th class="text-center">Total</th>
-                    <th class="text-center">botão</th>
-                    <th colspan="2"></th>
+                    <input type="hidden" name="total" value="<?= $somaTotal ?>">
+                    <input type="hidden" name="num" value="<?= $num ?>">
+
+                    <th class="text-center"><input type="submit" value="Pagar" name="btnPagar"></th>
+
                 </tr>
+            </form>
         </tbody>
     </table>
 
-    <form action="">
 
-
-    </form>
 </section>

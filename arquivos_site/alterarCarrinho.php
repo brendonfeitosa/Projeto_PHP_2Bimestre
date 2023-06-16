@@ -2,7 +2,7 @@
 require("./header.php");
 
 if(isset($_GET['item'])){
-   print_r($_SESSION['carrinho']);
+  // print_r($_SESSION['carrinho']);
     $aux = [];
       foreach ($_SESSION['carrinho'] as $chave => $produto1) {
           if ($produto1 != null) {
@@ -14,7 +14,7 @@ if(isset($_GET['item'])){
     }
    
 
-echo "-------------------------";
+//echo "-------------------------";
 //session_start();
 $_SESSION['carrinho'] = $aux;
 //print_r($_SESSION['carrinho']);

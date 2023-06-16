@@ -7,8 +7,7 @@ if (isset($_SESSION['carrinho'])) {
     }
 }
 $vl_total_item = 0;
-
-//print_r($_SESSION['carrinho']);
+$msg_err = null;
 
 if ($_SESSION['carrinho'] == null) {
     header("Location:cardapio.php");
@@ -32,11 +31,11 @@ $result1 = $conn->query($sql1);
 
 if (isset($_POST['finalizar'])) {
 
-
-    $sql2 = "INSERT INTO pedido (tipo_pagamento_cod,cliente_cli_id, valor_total) VALUES ({$_POST['pgto']}, {$_SESSION['id']},$vl_total_item)";
-    //   print_r($_POST);
-    // echo $sql2;
     $endcod = $_POST['endereco'];
+
+    $sql2 = "INSERT INTO pedido (tipo_pagamento_cod,cliente_cli_id, valor_total,cod_entrega) ";
+    $sql2 .= " VALUES ({$_POST['pgto']}, {$_SESSION['id']},$vl_total_item,$endcod)";
+
     $result = $conn->query($sql2);
     $ultimopedido = "SELECT MAX(ped_num) as maxId FROM pedido;";
     $result3 = $conn->query($ultimopedido);
@@ -55,8 +54,11 @@ if (isset($_POST['finalizar'])) {
 
                 $sql2 = "INSERT INTO produto_has_pedido ( produto_codigo,pedido_ped_num,qtde,valorUinitario, desconto,subtotal)";
                 $sql2 .= "  VALUES($cod,{$pedidoNum['maxId']},$qtd,$vlUnitario,0,$vlTotal);";
-                //  $result = $conn->query($sql2);
-               // echo $sql2." ".$endcod;
+                $result = $conn->query($sql2);
+
+                if (!$result) {
+                    $msg_err .= "Não foi possivel realizar o pedido!";
+                }
             }
         }
     }
@@ -64,12 +66,12 @@ if (isset($_POST['finalizar'])) {
     //-----------------------------pagamento--------------------------------------//
 
     // Realizar pagamento 
-    header("Location:pagamento.php?numped={$pdNum}&endcod={$endcod}");
+
+    if ($msg_err == "") {
+
+        header("Location:pagamento.php?numped={$pdNum}&endcod={$endcod}");
+    }
     //---------------------------------------------------------------------------//
-
-
-
-
 
 }
 
@@ -195,10 +197,6 @@ if (isset($_POST['finalizar'])) {
 
             <input type="submit" class="btn btn-outline-success" name="finalizar" value="Realizar Pagamento" />
         </div>
-
-        <!-- ===================================================================================================================== -->
-
-        <!-- ------------------------------------------------------------------------------------------------------------------- -->
 
         </form>
 

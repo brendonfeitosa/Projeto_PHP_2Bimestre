@@ -1,25 +1,61 @@
-/* .bgg {
-    background-color: red;
-} */
+
 body{
     font-family: 'Roboto';
     font-size: 0.95rem;
+
 }
 
 section{
+   
     font-family: 'Roboto','Calibri';
     font-size: 0.9rem;
 }
+main{
+   
+    width: 99,999%;
+    margin-left: auto;
+    margin-right: auto;
+}
+nav{
+  
+  
+}
+
 hr{
     color: #bea200;
     
 }
 .centralizar {
-    display: flex;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
+
+   width:100%;
+   margin-left: auto;
+   margin-right: auto;
+   
 }
+.demo {
+    margin-bottom: 12px;
+   
+}
+.ajuste-center{
+   width: 99.999%;
+  
+  margin-left: auto;
+  margin-right: auto
+}
+
+
+.img_banner {
+
+       max-width: 100%;
+       width: 1920px;
+       height: 600px;
+       margin-bottom: 9px;
+        margin-top: -90px; 
+       object-fit: cover;
+   
+   }
+
+
 
 .reset_decor {
 
@@ -62,17 +98,7 @@ a .reset_decor:hover {
 
 
 .img_card {
-    /* display: block; */
-    /*  display: table; */
-    /* flex-direction: row; */
-    /*  width: 300px;
-    padding: 20px;
-    margin-left: -15px; 
-    margin-right: 200px;
-    margin-bottom: -7px;
-    margin-top: -4px;
-    max-width: 14000px;  */
-
+   
     max-height: 180px;
     align-self: center;
     width: 240px;
@@ -117,15 +143,7 @@ a .reset_decor:hover {
     background-color: "#fffdd";
 }
 
-/* .carousel-inner > .carousel-item > img{
-    width: 400px;
-    height: 500px;
-    margin-left: 3px;
-    margin-right: 4px;
-    margin-bottom: 50px;
-    margin-top: 100px;
-    color: #ee8f54;   
- }  */
+
 
 .text>.text-center {
     color: #e91a0b;
@@ -135,15 +153,6 @@ a .reset_decor:hover {
     font-size: 250%;
 }
 
-/*  .col>.card >.img{
-    border-bottom: #95a2ad;
-    border-radius: 6x; 
-} */
-/* .col{
-    margin-right: 4px;
-    margin-bottom: 50px;
-    margin-top: 100px;  
-} */
 .text> {
     color: #e91a0b;
     /*  margin-top: 1000px;
@@ -152,16 +161,6 @@ a .reset_decor:hover {
     font-size: 250%;
 }
 
-.img_banner {
-
-    max-width: 1430px;
-    width: 1445px;
-    height: 600px;
-    margin-bottom: 9px;
-    margin-top: -100px;
-    object-fit: cover;
-
-}
 
 .imagem {
     width: 200px;
@@ -206,16 +205,12 @@ a .reset_decor:hover {
 
 }
 
-.item-container {}
 
 .card-menu {
     margin-left: 15px;
 
 }
 
-.demo {
-    margin-bottom: 12px;
-}
 
 .recuo_menu {
 

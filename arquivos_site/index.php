@@ -1,7 +1,7 @@
 <?php require('./header.php'); ?>
 
 <!-- Carousel -->
-<div id="demo" class="carousel slide centralizar" data-bs-ride="carousel">
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
 
     <!-- Indicators/dots -->
     <div class="carousel-indicators centralizar">
@@ -13,7 +13,7 @@
     </div>
 
     <!-- The slideshow/carousel -->
-    <div class="carousel-inner">
+    <div class="carousel-inner ajuste-center">
         <div class="carousel-item active">
             <img src="./img/pizza1.jpg" alt="Los Angeles" class="d-block img_banner">
         </div>

@@ -31,6 +31,7 @@ CREATE TABLE `cliente` (
   `senha` varchar(250) NOT NULL,
   `whatsapp` varchar(11) NOT NULL,
   `email` varchar(150) NOT NULL,
+  `cpf` varchar(11) NOT NULL,
   PRIMARY KEY (`cli_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,7 +42,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Anderson Marques da Silva','M','2023-06-09','ander','$2y$10$etSIWhDPI3lJYPEGwvq9xO2xo1HV.Q.4NswFO2AuZ0EI4eGT4wR9i','18997752582','andermarsil@gmail.com'),(2,'anderson silva','M','1978-10-27','anders','$2y$10$67pVWoWFTLMBxLaPFtpldOh9kkvnrlHJ8Pttjz9b8olF/ME1Bm9tq','18997752582','anderrevisor@hotmail.com'),(9,'anderson silva','M','2023-06-18','msilva','$2y$10$d8EyVNXAJO0BYKp8EfK9kOudvLkqxX.LO43W0JwRSyTpqmM8BrmCS','18997752582','msilva@hotmail.com'),(10,'Manoel','M','2023-06-08','Mal','$2y$10$iEntac/u7z/GY4wPGhwrWuGOyn7HpK8GDvS/mr40FVh5XYT7ZFw5S','18997752582','andermsilva@gmail.com'),(11,'suzana','F','0997-03-23','sousa','$2y$10$R.xY2JK6ONlk8lK9LOhrKOkmXs0nBwHqtdqI8LyunMjls8.DDd0ty','18998018127','suzhy48@gamil.com'),(12,'suzana','F','1997-03-12','sousa','$2y$10$6HH17zPNE7A9KkpRlnEKpe9v.Nsw/JBg0ckzGU8guqwCfJlfoP4tS','11987655544','suzhy48@gamil.com'),(13,'brendon','M','1995-07-19','Feitosa','$2y$10$7d38eZMpJkRZBL37zAvYKe3VYtaHYYT7..9S3ccBTd32W7UFe5xNi','18981077130','brendongstv@gmail.com');
+INSERT INTO `cliente` VALUES (1,'Anderson Marques da Silva','M','2023-06-09','ander','$2y$10$etSIWhDPI3lJYPEGwvq9xO2xo1HV.Q.4NswFO2AuZ0EI4eGT4wR9i','18997752582','andermarsil@gmail.com','11111111100'),(2,'anderson silva','M','1978-10-27','anders','$2y$10$67pVWoWFTLMBxLaPFtpldOh9kkvnrlHJ8Pttjz9b8olF/ME1Bm9tq','18997752582','anderrevisor@hotmail.com','11111111100'),(9,'anderson silva','M','2023-06-18','msilva','$2y$10$d8EyVNXAJO0BYKp8EfK9kOudvLkqxX.LO43W0JwRSyTpqmM8BrmCS','18997752582','msilva@hotmail.com','11111111100'),(10,'Manoel','M','2023-06-08','Mal','$2y$10$iEntac/u7z/GY4wPGhwrWuGOyn7HpK8GDvS/mr40FVh5XYT7ZFw5S','18997752582','andermsilva@gmail.com','11111111100'),(11,'suzana','F','0997-03-23','sousa','$2y$10$R.xY2JK6ONlk8lK9LOhrKOkmXs0nBwHqtdqI8LyunMjls8.DDd0ty','18998018127','suzhy48@gamil.com','11111111100'),(12,'suzana','F','1997-03-12','sousa','$2y$10$6HH17zPNE7A9KkpRlnEKpe9v.Nsw/JBg0ckzGU8guqwCfJlfoP4tS','11987655544','suzhy48@gamil.com','11111111100'),(13,'brendon','M','1995-07-19','Feitosa','$2y$10$7d38eZMpJkRZBL37zAvYKe3VYtaHYYT7..9S3ccBTd32W7UFe5xNi','18981077130','brendongstv@gmail.com','11111111100');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,4 +370,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-18 18:08:17
+-- Dump completed on 2023-06-18 19:22:55

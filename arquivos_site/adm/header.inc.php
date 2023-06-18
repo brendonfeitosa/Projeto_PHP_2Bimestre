@@ -42,7 +42,7 @@ require_once("../utils/connection.php");
                         <a class="nav-link" href="pagamentos.php">Pagamentos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ">Clientes</a>
+                        <a class="nav-link " href="cliente.php">Clientes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ">Usuários</a>

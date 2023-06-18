@@ -58,3 +58,15 @@ section{
 
     width:fit-content;
   }
+
+  .pg-cancelado{
+    background-color: rgb(255, 23, 81);
+    color: #ffffff;
+    font-weight: bold;
+  }
+  .pg-pago{
+    background-color: #17f7f7;
+    color: #393c3d;
+
+    font-weight: bold;
+  }

@@ -43,9 +43,12 @@ require_once('filtro.php');
 <section class="container_card">
 
     <!-- Vertically centered scrollable modal -->
-    <button type="button" class="btn btn-link text-saiba" data-bs-toggle="modal" data-bs-target="#modal1">
-       <?=isset($_SESSION['carrinho'])?'Carrinho':''?> 
-    </button>
+    <div class="text-end">
+
+        <button type="button" class="btn btn-link text-saiba " data-bs-toggle="modal" data-bs-target="#modal1">
+            <?=isset($_SESSION['carrinho'])?'Carrinho':''?> 
+        </button>
+    </div>
 
     <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

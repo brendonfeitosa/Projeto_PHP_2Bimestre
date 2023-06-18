@@ -94,25 +94,7 @@ if (isset($_POST['btnPagar'])) {
                     <th class="text-center">Total</th>
                     <th class="text-center">R$ <?= number_format($somaTotal, 2, ',', '.') ?></th>
 
-                </tr>
-               <!--  <tr>
-                    <td style="text-align: start;" class="align-items-center bg-danger">
-                        &nbsp;eee
-                    </td>
-
-                    <td class="d-flex align-items-center">
-                        00,0,0,0,0,0,0,0,0,0,0,0>
-                    </td>
-
-                    <td class="align-items-center">
-                        owowowowowowowowowowo
-                    </td>
-
-                    <td class="text-center align-items-center">
-                        frewrwerwerwer
-                    </td>
-
-                </tr> -->
+            
                 <tr>
                     <td style="text-align: end;" class="align-items-center">
                         <?= $identificador ?>&nbsp;

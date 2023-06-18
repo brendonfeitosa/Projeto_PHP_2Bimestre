@@ -7,7 +7,7 @@ if (!isset($_SESSION['login_adm']) || $_SESSION['login_adm'] != true) {
     header("Location: login_adm.php");
 }
 
-$sql ="SELECT pg.pag_id, p.ped_num,tp.nome modo,pg.valor,p.ped_data, c.nome, e.logradouro, e.numero ";
+$sql ="SELECT pg.pag_id, p.ped_num,tp.nome modo,pg.valor,p.ped_data, c.nome,pg.cancelado, e.logradouro, e.numero ";
 $sql .= " FROM pagamento pg inner join pedido p on pg.ped_num = p.ped_num ";
 $sql .= "inner join cliente c on c.cli_id = p.cliente_cli_id ";
 $sql .= " inner join tipo_pagamento tp on p.tipo_pagamento_cod = tp.cod ";
@@ -28,7 +28,7 @@ mysqli_close($conn);
         <div class="col-8 m-auto text-center"> <!-- temos que centrarlizar direito -->
             <table class="table table-bordered">
                 <thead>
-                    <tr>
+                    <tr class="">
                         <th scope="col">Nº</th>
                         <th scope="col">Pedido</th>
                         <th scope="col">Modo</th>
@@ -38,6 +38,7 @@ mysqli_close($conn);
                         <th scope="col">nome</th>
                         <th scope="col">Rua</th>
                         <th scope="col">numero</th>
+                        <th scope="col">------</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -47,7 +48,8 @@ mysqli_close($conn);
 
 
                     ?>
-                        <tr>
+                   
+                        <tr class="<?=($data['cancelado'] == 1) ?'pg-cancelado':'pg-pago'?>">
                             <th scope="row"><?= $data['pag_id'] ?></th>
                             <td><?= $data['ped_num'] ?></td>
                             <td><?= $data['modo'] ?></td>
@@ -56,11 +58,13 @@ mysqli_close($conn);
                             <td><?= $data['nome'] ?></td>
                             <td ><?= $data['logradouro'] ?></td>
                             <td ><?= $data['numero'] ?></td>
+                            <td ><?= ($data['cancelado'] == 1) ?'Cancelado':'Pago' ?></td>
                             
                            
                         </tr>
-
-                    <?php } ?>
+                        
+                        <?php } ?>
+                       
 
                 </tbody>
             </table>

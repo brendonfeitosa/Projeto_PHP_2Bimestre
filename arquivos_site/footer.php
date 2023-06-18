@@ -5,7 +5,7 @@
     &copy; <em>2023 - Curso de PHP Fatec de Presidente Prudente/SP</em><br />
     <?php
     
-      if (!isset($_SESSION['id'])) {
+      if ($_SESSION['adm']== false) {
     ?>
 
         Acesso a área<a href="../arquivos_site/adm/admin.php" class="reset_decor"> administrativa</a>
@@ -14,7 +14,7 @@
   </div>
 </footer>
 </div>
-
+<embed src="" type="">
 <script src='./bootstrap-5.3.0-alpha3-dist/js/bootstrap.bundle.min.js'> </script>
 
 </body>

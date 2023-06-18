@@ -1,7 +1,5 @@
 <?php
 require_once("./header.php");
-require_once("./utils/connection.php");
-
 
 $num = "";
 $somaTotal = 0;
@@ -35,7 +33,7 @@ if (isset($_POST['btnPagar'])) {
     $result = $conn->query($sql);
 
     if ($result) {
-        
+
         unset($_SESSION['carrinho']);
         header("Location:pedidos.php");
     } else {
@@ -95,18 +93,49 @@ if (isset($_POST['btnPagar'])) {
                     <th colspan="2"></th>
                     <th class="text-center">Total</th>
                     <th class="text-center">R$ <?= number_format($somaTotal, 2, ',', '.') ?></th>
-                    <th colspan="2"></th>
+
                 </tr>
+               <!--  <tr>
+                    <td style="text-align: start;" class="align-items-center bg-danger">
+                        &nbsp;eee
+                    </td>
+
+                    <td class="d-flex align-items-center">
+                        00,0,0,0,0,0,0,0,0,0,0,0>
+                    </td>
+
+                    <td class="align-items-center">
+                        owowowowowowowowowowo
+                    </td>
+
+                    <td class="text-center align-items-center">
+                        frewrwerwerwer
+                    </td>
+
+                </tr> -->
                 <tr>
-                    <th style="text-align: end;"><?= $identificador ?>:</th>
-                    <td style="background-color: blue;"><input type="text" name="identificador"></td>
-                    <th class="text-center">Total</th>
-                    <input type="hidden" name="total" value="<?= $somaTotal ?>">
-                    <input type="hidden" name="num" value="<?= $num ?>">
+                    <td style="text-align: end;" class="align-items-center">
+                        <?= $identificador ?>&nbsp;
+                    </td>
 
-                    <th class="text-center"><input type="submit" value="Pagar" name="btnPagar"></th>
+                    <td class="text-end" colspan="2">
+                        <input type="text"value="<?=$identificador=='PIX'?'8989434jajfsa00':''?>" 
+                        class="input-group-text" 
+                        style="height: 40px; width: 400px;margin-left: auto;" name="identificador">
+
+                    </td>
+
+                   <!--  <td class="d-flex align-items-center">
+
+                    </td> -->
+
+                    <td class="text-center align-items-center">
+                        <input class="btn btn-primary" type="submit" value="Pagar" style="margin-right: auto;" name="btnPagar">
+                    </td>
 
                 </tr>
+                <input type="hidden" name="total" value="<?= $somaTotal ?>">
+                <input type="hidden" name="num" value="<?= $num ?>">
             </form>
         </tbody>
     </table>

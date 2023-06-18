@@ -1,6 +1,6 @@
 <?php
     require("header.inc.php");
-if (!isset($_SESSION['email']) || $_SESSION['email'] != true) {
+if (!isset($_SESSION['login_adm']) || $_SESSION['login_adm'] != true) {
     header("Location: login_adm.php");
 
 }

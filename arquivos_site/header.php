@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['adm'] = false;
 require_once("utils/connection.php");
 
 if (isset($_GET['limpar'])) {
@@ -16,12 +17,24 @@ if (isset($_GET['limpar'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;400;700&family=Roboto:ital,wght@0,100;0,300;0,500;0,700;1,100;1,500;1,700&display=swap" rel="stylesheet">
     <title>Fatec Food</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="./bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="./CSS/styles.css">
+
+    <script>
+        const myModal = document.getElementById('myModal')
+        const myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', () => {
+            myInput.focus()
+        })
+    </script>
 
 </head>
 
@@ -58,12 +71,6 @@ if (isset($_GET['limpar'])) {
                 </ul>
 
             </div>
-
-
-
-
-            <!-- ////////////////////////////////////////////////////////////////////// -->
-
             <?php
             if (isset($_SESSION['carrinho'])) { ?>
 

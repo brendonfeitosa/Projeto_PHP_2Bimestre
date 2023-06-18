@@ -3,6 +3,7 @@ require("header.inc.php");
 
 
 $username = $password = $login_err = "";
+$_SESSION['adm'] = true;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($_POST['email']) || empty($_POST['senha'])) {

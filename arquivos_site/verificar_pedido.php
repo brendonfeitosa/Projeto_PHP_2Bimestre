@@ -26,11 +26,8 @@ foreach ($_SESSION['carrinho'] as $chave => $produto) {
 $sql1 = "select * from tipo_pagamento;";
 $result1 = $conn->query($sql1);
 
-
-
-
 if (isset($_POST['finalizar'])) {
-
+//print_r($_POST);
     $endcod = $_POST['endereco'];
 
     $sql2 = "INSERT INTO pedido (tipo_pagamento_cod,cliente_cli_id, valor_total,cod_entrega) ";
@@ -74,71 +71,66 @@ if (isset($_POST['finalizar'])) {
     //---------------------------------------------------------------------------//
 
 }
-
-
-
-?>
-<?php if (isset($_SESSION['carrinho'])) { ?>
+ if (isset($_SESSION['carrinho'])) { ?>
     <section class="container_card">
-        <div class="text">
-            <h4 class="text-center">FINALIZAR PEDIDO</h4>
-        </div>
-        <div class="cl_filtro" style="margin-left: 0;">
-            <label for="">Endereços de Entrega</label>
-            <select class="form-select form-select-sm" name="endereco">
+        <form method="post" action="verificar_pedido.php" class="text-center">
+            <div class="text">
+                <h4 class="text-center">FINALIZAR PEDIDO</h4>
+            </div>
+            <div class="cl_filtro" style="margin-left: 0;">
+                <label for="">Endereços de Entrega</label>
+                <select class="form-select form-select-sm" name="endereco">
 
-                <?php
-                $endcod = 0;
-                // Consulta para obter endereços
-                $sql1 = "SELECT end_cod, bairro,logradouro, numero, cidade,comp ";
-                $sql1 .= "FROM bd_resto.endereco where cliente_cli_id =" . $_SESSION['id'];
-                $resultado = $conn->query($sql1);
+                    <?php
+                    $endcod = 0;
+                    // Consulta para obter endereços
+                    $sql1 = "SELECT end_cod, bairro,logradouro, numero, cidade,comp ";
+                    $sql1 .= "FROM bd_resto.endereco where cliente_cli_id =" . $_SESSION['id'];
+                    $resultado = $conn->query($sql1);
 
-                // Exibição das opções da lista suspensa com as categorias
-                if ($resultado->num_rows > 0) {
-                    while ($rows = $resultado->fetch_assoc()) {
-                        $endcod = $rows['end_cod'];
-                        $rua = $rows['logradouro'];
-                        $numero = $rows['numero'];
-                        $bairro = $rows['bairro'];
-                        $cid = $rows['cidade'];
-                        $comp = $rows['comp'];
+                    // Exibição das opções da lista suspensa com as categorias
+                    if ($resultado->num_rows > 0) {
+                        while ($rows = $resultado->fetch_assoc()) {
+                            $endcod = $rows['end_cod'];
+                            $rua = $rows['logradouro'];
+                            $numero = $rows['numero'];
+                            $bairro = $rows['bairro'];
+                            $cid = $rows['cidade'];
+                            $comp = $rows['comp'];
 
-                ?>
+                    ?>
 
-                        <option value="<?= $endcod ?>">
-                            <?= $bairro ?>&nbsp;
-                            Rua: <?= $rua ?>&nbsp;
-                            Nº <?= $numero ?>&nbsp;
-                            Compl.<?= $comp ?>&nbsp;
-                            Cidade: <?= $cid ?>&nbsp;
+                            <option value="<?= $endcod ?>">
+                                <?= $bairro ?>&nbsp;
+                                Rua: <?= $rua ?>&nbsp;
+                                Nº <?= $numero ?>&nbsp;
+                                Compl.<?= $comp ?>&nbsp;
+                                Cidade: <?= $cid ?>&nbsp;
 
-                        </option>";
-                <?php  }
-                }
-                ?>
-            </select>
-        </div>
-        <hr>
-        <table class="table">
-            <thead>
-                <tr>
+                            </option>
+                    <?php  }
+                    }
+                    ?>
+                </select>
+            </div>
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
 
-                    <th scope="col">Nome</th>
-                    <th scope="col" class="text-center">Quantidade</th>
-                    <th scope="col" class="text-center">Valor Unitario</th>
-                    <th scope="col" class="text-center">Valor Total</th>
-                    <th scope="col" class="text-center">Excluir</th>
-                </tr>
-            </thead>
-            <tbody>
-                <form method="post" action="verificar_pedido.php" class="text-center">
-                    <input type="hidden" name="endereco" value="<?= $endcod ?>">
+                        <th scope="col">Nome</th>
+                        <th scope="col" class="text-center">Quantidade</th>
+                        <th scope="col" class="text-center">Valor Unitario</th>
+                        <th scope="col" class="text-center">Valor Total</th>
+                        <th scope="col" class="text-center">Excluir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  
                     <?php
 
-                    // print_r($_SESSION['carrinho']);
+ 
                     $somaTotal = 0;
-                    // print_r($_SESSION);
                     foreach ($_SESSION['carrinho'] as $chave => $produto) {
                         if ($produto != null) { ?>
                             <tr>
@@ -180,29 +172,29 @@ if (isset($_POST['finalizar'])) {
                         <th class="text-center">R$ <?= number_format($somaTotal, 2, ',', '.') ?></th>
                         <th colspan="2"></th>
                     </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
 
 
-        <div class="text-center">
-            <?php
-            while ($tppgto = mysqli_fetch_array($result1)) { ?>
+            <div class="text-center">
+                <?php
+                while ($tppgto = mysqli_fetch_array($result1)) { ?>
 
-                <label for="pgto"><?= strtoupper($tppgto['nome']) ?></label>
-                <input type="radio" name="pgto" <?= $tppgto['cod'] == 9 ? 'checked' : '' ?> id="pgto" value="<?= $tppgto['cod'] ?>">&nbsp;
-            <?php } ?>
-            <br />
-            <br />
+                    <label for="pgto"><?= strtoupper($tppgto['nome']) ?></label>
+                    <input type="radio" name="pgto" <?= $tppgto['cod'] == 9 ? 'checked' : '' ?> id="pgto" value="<?= $tppgto['cod'] ?>">&nbsp;
+                <?php } ?>
+                <br />
+                <br />
 
-            <input type="submit" class="btn btn-outline-success" name="finalizar" value="Realizar Pagamento" />
-        </div>
+                <input type="submit" class="btn btn-outline-success" name="finalizar" value="Realizar Pagamento" />
+            </div>
 
         </form>
 
     </section>
 
-    </form>
+    <!--   </form> -->
     </div>
     </div>
 

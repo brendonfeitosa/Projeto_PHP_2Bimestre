@@ -1,7 +1,19 @@
 /* .bgg {
     background-color: red;
 } */
+body{
+    font-family: 'Roboto';
+    font-size: 0.95rem;
+}
 
+section{
+    font-family: 'Roboto','Calibri';
+    font-size: 0.9rem;
+}
+hr{
+    color: #bea200;
+    
+}
 .centralizar {
     display: flex;
     justify-content: center;
@@ -187,21 +199,20 @@ a .reset_decor:hover {
     flex-direction: row;
     margin-left: auto;
     margin-right: auto;
-    
+
     justify-content: start;
-    
+
 
 
 }
-.item-container{
-   
-    
-}
 
-.card-menu{
+.item-container {}
+
+.card-menu {
     margin-left: 15px;
-    
+
 }
+
 .demo {
     margin-bottom: 12px;
 }
@@ -216,27 +227,50 @@ a .reset_decor:hover {
 }
 
 .text-descr {
-
     margin-top: 8px;
-    height: 65px;
-    padding: 2px;
-   
-    margin-bottom: 8px;
-    text-align: start;
+    height: 50px;
+
+    margin-bottom: 5px;
+
+
 }
-    .tm_input{
-        width: 50px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        border-color: rgb(212, 244, 250);
+.text-saiba{
+   
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
 
-        outline-color: aquamarine;
-        outline-width: 0.05rem;
-     
- }
+}
 
- .cl_filtro{
+.tm_input {
+    width: 50px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border-color: rgb(212, 244, 250);
+
+    outline-color: aquamarine;
+    outline-width: 0.05rem;
+
+}
+
+.card-produto {
+    background-color: #fcfcfc;
+    box-shadow: 0px 4px 4px #00000040;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.cl_filtro {
     width: 76%;
     margin-left: auto;
     margin-right: auto;
- }
+}
+
+.cor-preco {
+    color: #e91a0b;
+    font-weight: 500;
+}
+
+.cor-promo {
+    color: #1a0be9;
+    font-weight: 400;
+}

@@ -11,7 +11,7 @@ $sql ="SELECT p.ped_num, c.nome,e.logradouro, ped_data,e.numero,e.comp,s.status 
 $sql .= " pedido p inner join cliente c on p.cliente_cli_id = c.cli_id ";
 $sql .= " inner join endereco e on c.cli_id = e.cliente_cli_id ";
 $sql .= " inner join status_pedido s on s.status_id  = p.status ";
-$sql .= " where p.cod_entrega = e.end_cod and c.cli_id = {$_SESSION['id']};";
+$sql .= " where p.cod_entrega = e.end_cod and c.cli_id = {$_SESSION['id']}  order by p.ped_num desc;";
 
 $result = $conn->query($sql);
 

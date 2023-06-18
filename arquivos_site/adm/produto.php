@@ -92,7 +92,7 @@ if (isset($_GET['cod'])) {
 <h3>Gerenciamento de Produtos</h3>
 <form action="" method="post">
 
-    <section class="container_rel">
+    <section class="">
         <h5>Informe os dados</h5>
         <table class="table">
 

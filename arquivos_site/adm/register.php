@@ -1,6 +1,6 @@
 <?php
 require("header.inc.php");
-require_once("../utils/connetion.php");
+require_once("../utils/connection.php");
 
 $email = "";
 $nome = "";

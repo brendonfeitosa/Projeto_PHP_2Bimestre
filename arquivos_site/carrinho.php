@@ -24,9 +24,8 @@ foreach ($_SESSION['carrinho'] as $key => $value) {
         }
     }
 }
-if(!$test)
+if(!$test){
   array_push($_SESSION['carrinho'], $aux);
-
-
+}
 header("Location: cardapio.php");
 ?>

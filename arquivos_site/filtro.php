@@ -47,7 +47,16 @@ if (isset($_GET['buscar'])) {
             if (mysqli_num_rows($result) > 0) { ?>
 
                 <?php
-                while ($row = mysqli_fetch_assoc($result)) { ?>
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    if ($row['promo'] > 0) {
+                        $preco =  $row['preco'] - ($row['preco'] * 0.05);
+                    } else {
+
+                        $preco = $row['preco'];
+                    }
+
+                ?>
                     <div class="card text-center m-2" style="width: 16rem; height: 410px;">
                         <form action="carrinho.php" method="post">
 
@@ -56,13 +65,19 @@ if (isset($_GET['buscar'])) {
                             <input type="hidden" name="preco" value="<?= $row['preco'] ?>">
                             <input type="hidden" name="nomeprod" value="<?= $row['nome'] ?>">
                             <img src="<?= $row['image_url'] ?>" class="img_card2" alt="...">
-                            <div class="">R$ <?= $row['preco'] ?></div>
-                            <div class="text-descr"><?= substr($row['descricao'], 0, 40) ?></div>
-                            <div style="margin-top: 5px;">
 
-                                Quantidade: <input type="number" name="qtd" class="tm_input" min="1" value="1" />
-                                <input type="submit" name="addcarrinho" id="addcarrinho" class="btn btn-success" value="Adicionar ao Carrinho" />
+                            <div class="text-descr"><?= substr($row['descricao'], 0, 40) ?></div>
+                            <div class="cor-preco">
+
+                                R$ <?= number_format($preco, 2, ',', '.') ?>
+
+                                <span class="cor-promo"> <?= $row['promo'] > 0 ? ' &nbsp;&nbsp; Promoção' : '' ?></span>
                             </div>
+                                <div style="margin-top: 5px;">
+
+                                    Quantidade: <input type="number" name="qtd" class="tm_input" min="1" value="1" />
+                                    <input type="submit" name="addcarrinho" id="addcarrinho" class="btn btn-success" value="Adicionar ao Carrinho" />
+                                </div>
                         </form>
                     </div>
             <?php }
@@ -101,7 +116,7 @@ if (isset($_GET['buscar'])) {
             ?>
         </select>
     </form>
-    
+
     <!--  -->
 </section>
 <?php
@@ -125,16 +140,30 @@ if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
                 </div>
 
                 <?php
-                while ($row = $result->fetch_assoc()) { ?>
+                while ($row = $result->fetch_assoc()) {
+
+                    if ($row['promo'] > 0) {
+                        $preco =  $row['preco'] - ($row['preco'] * 0.05);
+                    } else {
+
+                        $preco = $row['preco'];
+                    }
+
+                ?>
                     <div class="card m-2" style="width: 16rem;height: 410px;">
                         <form action="carrinho.php" method="post">
-                            <strong class="card-title1"><?= $row['nome'] ?></strong>
+                            <strong class="card-text1"><?= $row['nome'] ?></strong>
                             <input type="hidden" name="cod" value="<?= $row['codigo'] ?>">
                             <input type="hidden" name="preco" value="<?= $row['preco'] ?>">
                             <input type="hidden" name="nomeprod" value="<?= $row['nome'] ?>">
                             <img src="<?= $row['image_url'] ?>" class="img_card2" alt="...">
                             <div class="text-descr"><?= substr($row['descricao'], 0, 40) ?></div>
-                            <div>R$ <?= $row['preco'] ?></div>
+                            <div class="cor-preco">
+
+                                R$ <?= number_format($preco, 2, ',', '.') ?>
+
+                                <span class="cor-promo"> <?= $row['promo'] > 0 ? ' &nbsp;&nbsp; Promoção' : '' ?></span>
+                            </div>
                             <div style="margin-top: 5px;">
 
                                 Quantidade: <input type="number" name="qtd" class="tm_input" min="1" value="1" /> <br />

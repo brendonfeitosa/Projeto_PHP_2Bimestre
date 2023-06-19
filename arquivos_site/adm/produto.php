@@ -18,6 +18,7 @@ $desc = "";
 $preco = "";
 $img = "";
 $peso = "";
+$desco = "";
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -30,13 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $preco = $_POST['preco'];
     $img = $_POST['iurl'];
     $peso = $_POST['peso'];
+    $desco = $_POST['desco'];
     if (isset($_POST['promo'])) {
         $promo = $_POST['promo'];
     }
     if ($cod == 0) {
        // echo $cod." entro";
-        $sql = "insert into produto(tipo_cod,nome,descricao,preco,promo,image_url,peso) values($tp,'$nome','$desc',$preco,$promo,'$img',$peso);"; 
-        $sql = "select count(*) as produtos from produto where nome = lower('{$nome}');";
+       
+        $sql = "select count(*) as produtos from produto where lower(nome) = lower('{$nome}');";
 
         $result = $conn->query($sql);
         $data = mysqli_fetch_array($result);
@@ -45,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $msg_err = "Produto ja cadastrado";
         } else {
 
-            $sql = "insert into produto(tipo_cod,nome,descricao,preco,promo,image_url,peso) values($tp,'$nome','$desc',$preco,$promo,'$img',$peso);";
+            $sql = "insert into produto(tipo_cod,nome,descricao,preco,promo,image_url,peso,desconto) values($tp,'$nome','$desc',$preco,$promo,'$img',$peso,$desco);"; 
           //   echo $sql;
             $result = $conn->query($sql);
             if (!$result) {
@@ -55,11 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             header("Location: produto.php?msg=$msg_err");
         }
 
-    }else if($cod > 1){
+    }else if($cod > 0){
         
         
 
-        $sql = "update produto set tipo_cod =$tp ,nome ='$nome' ,descricao = '$desc' ,preco = $preco ,promo = $promo,image_url = '$img', peso = $peso ";
+        $sql = "update produto set tipo_cod =$tp ,nome ='$nome' ,descricao = '$desc' ,preco = $preco ,promo = $promo,image_url = '$img', peso = $peso, desconto = $desco ";
         $sql .=" where codigo = {$cod};";
          //echo $sql;   
             $result = $conn->query($sql);
@@ -85,6 +87,7 @@ if (isset($_GET['cod'])) {
     $preco = $row['preco'];
     $img = $row['image_url'];
     $peso = $row['peso'];
+    $desco = $row['desconto'];
 }
 
 ?>
@@ -162,6 +165,13 @@ if (isset($_GET['cod'])) {
                     </td>
                     <td scope="col">
                         <div class="input-group input-group-sm mb-3">
+                            <label for="Input7" class="form-label">Desc%
+                                <input type="text" name="desco" id="Input7" value="<?=$desco?>" class="form-control" size="5">
+                            </label>
+                        </div>
+                    </td>
+                    <td scope="col">
+                        <div class="input-group input-group-sm mb-3">
                             <label for="Input5" class="form-label">
                                 <input class="form-check-input" type="checkbox"
                                      name="promo" value="1" <?=($promo == 1) ?'checked':''?>>
@@ -205,8 +215,9 @@ if (isset($_GET['cod'])) {
                     <th scope="col">Tipo</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Foto</th>
-                    <th scope="col">Peso</th>
                     <th scope="col">Preço</th>
+                    <th scope="col">Desc%</th>
+                    <th scope="col">Peso</th>
                     <th scope="col" class="text-center">Editar/Excluir</th>
                 </tr>
             </thead>
@@ -232,6 +243,7 @@ if (isset($_GET['cod'])) {
                         <td><?= $prod['descricao'] ?></td>
                         <td><img src="<?= $prod['image_url'] ?>" width="80px" height="60px" alt=""></td>
                         <td>R$ <?= number_format($prod['preco'], 2, ',', '.') ?></td>
+                        <td><?=$prod['desconto'] > 0 ? $prod['desconto'] : 0 ?></td>
                         <td><?= number_format($prod['peso'], 3, ',', '.'); ?>Kg</td>
                         <td >
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">

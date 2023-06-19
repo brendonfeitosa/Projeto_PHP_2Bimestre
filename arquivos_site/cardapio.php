@@ -109,17 +109,15 @@ require_once('filtro.php');
             <div class="card m-2 card-produto" style="width: 16rem;height: 390px; ">
                 <?php
                 if ($data['promo'] > 0) {
-                    $preco =  $data['preco'] - ($data['preco'] * 0.05);
-                } else {
-
-                    $preco = $data['preco'];
-                }
+                    $preco =  $data['preco'] - ($data['preco']*$data['desconto']/100);
+                } 
                 ?>
                 <form action="carrinho.php" method="post">
                     <input type="hidden" name="cod" value="<?= $data['codigo'] ?>">
                     <input type="hidden" name="preco" value="<?= $preco ?>">
                     <input type="hidden" name="nomeprod" value="<?= $data['nome'] ?>">
                     <input type="hidden" name="promo" value="<?= $data['promo'] ?>">
+                    <input type="hidden" name="desconto" value="<?= $data['desconto'] ?>">
                     <strong class="card-text1"><?= $data['nome'] ?> </strong>
                     <img src="<?= $data['image_url'] ?>" class="img_card2" alt="...">
 
@@ -128,9 +126,12 @@ require_once('filtro.php');
                     <div class="text-descr"><?= substr($data['descricao'], 0, 40) ?></div>
                     <div class="cor-preco">
 
-                        R$ <?= number_format($preco, 2, ',', '.') ?>
+                        R$ <?= number_format($data['preco'], 2, ',', '.') ?>
 
-                        <span class="cor-promo"> <?= $data['promo'] > 0 ? ' &nbsp;&nbsp; Promoção' : '' ?></span>
+                        <span class="cor-promo"> <?= $data['promo'] > 0 ? ' &nbsp;Promoção ' : '' ?></span>
+
+                        
+                        <?= $data['promo'] > 0 ? 'R$ '. number_format($preco, 2, ',', '.')  : '' ?>
                     </div>
                     <div style="margin-top: 2px;">
 
@@ -159,6 +160,7 @@ require_once('filtro.php');
                     <th scope="col">Nome</th>
                     <th scope="col">Quantidade</th>
                     <th scope="col">Valor Unitario</th>
+                    <th scope="col">Desconto</th>
                     <th scope="col">Valor Total</th>
                 </tr>
             </thead>
@@ -170,12 +172,13 @@ require_once('filtro.php');
                 foreach ($_SESSION['carrinho'] as $chave => $produto) {
 
                     if ($produto != null) {
-                        // print_r($produto);
+                         //print_r($produto);
                 ?>
                         <tr>
                             <td><?= $produto['nomeprod'] ?></td>
                             <td><?= $produto['qtd'] ?></td>
                             <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
+                            <td><?=($produto['desconto']>0)? $produto['desconto'].'%':'' ?></td>
                             <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
                         </tr>
                 <?php }

@@ -44,13 +44,22 @@ if (isset($_POST['finalizar'])) {
     if ($result) {
         foreach ($_SESSION['carrinho'] as $key => $value) {
             if ($value != null) {
+                
+                if($value['promo']>0){
+                    $desconto = $value['preco'] * ($value['desconto']/100);
+                    $desconto = round($desconto, 2);
+                }else{
+                    $desconto = 0;
+                }
+
                 $cod = $value['cod'];
                 $qtd = $value['qtd'];
                 $vlUnitario = $value['preco'];
                 $vlTotal =  $vlUnitario  * $qtd;
 
                 $sql2 = "INSERT INTO produto_has_pedido ( produto_codigo,pedido_ped_num,qtde,valorUinitario, desconto,subtotal)";
-                $sql2 .= "  VALUES($cod,{$pedidoNum['maxId']},$qtd,$vlUnitario,0,$vlTotal);";
+                $sql2 .= "  VALUES($cod,{$pedidoNum['maxId']},$qtd,$vlUnitario,$desconto,$vlTotal);";
+                //echo $sql2;
                 $result = $conn->query($sql2);
 
                 if (!$result) {
@@ -65,8 +74,8 @@ if (isset($_POST['finalizar'])) {
     // Realizar pagamento 
 
     if ($msg_err == "") {
-
-        header("Location:pagamento.php?numped={$pdNum}&endcod={$endcod}");
+//
+       header("Location:pagamento.php?numped={$pdNum}&endcod={$endcod}");
     }
     //---------------------------------------------------------------------------//
 

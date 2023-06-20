@@ -80,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="submit" class="btn btn-primary" value="Login">
                 </div>
                 <p>Não possui uma conta? <a href="cadastro.php">Registre-se agora</a>.</p>
+                <p>É um usuário administrador? <a href="./adm/login_adm.php">Clique aqui para logar</a>.</p>
             </form>
 
         </section>
@@ -87,9 +88,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p></p>
         <p></p>
         <p></p>
-    </main>
 
       <?php require("footer.php"); ?>
-</body>
-
-</html>

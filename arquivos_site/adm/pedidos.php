@@ -12,25 +12,30 @@ $sql .= " pedido p inner join cliente c on p.cliente_cli_id = c.cli_id ";
 $sql .= " inner join endereco e on c.cli_id = e.cliente_cli_id ";
 $sql .= " inner join status_pedido s on s.status_id  = p.status ";
 $sql .= " where p.cod_entrega = e.end_cod;";
-
+//echo $sql;
 $result = $conn->query($sql);
 
 
-mysqli_close($conn);
+
 ?>
+
 <section class="container_rel">
 
 
-    <div class="col-11 m-auto" style="display: <?= $display ?>;">
+    <div class="col-11 m-auto">
         <h1>Histórico de Pedidos</h1>
         <hr>
+        <?php 
+require_once("./filtroPedido.php");
+?>
         <br>
-        <div class="col-8 m-auto text-center"> <!-- temos que centrarlizar direito -->
+        <div class="col-8 m-auto text-center" style="width: 90%;"> <!-- temos que centrarlizar direito -->
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Número</th>
                         <th scope="col">Data / hora</th>
+                        <th scope="col">Cliente</th>
                         <th scope="col" colspan="3">Local de entrega</th>
 
                         <th scope="col" colspan="2">Status</th>
@@ -46,6 +51,7 @@ mysqli_close($conn);
                         <tr>
                             <th scope="row"><?= $data['ped_num'] ?></th>
                             <td><?= date("d/m/Y H:i:s", strtotime($data['ped_data'])) ?></td>
+                            <td><?= $data['nome'] ?></td>
                             <td><?= $data['logradouro'] ?></td>
                             <td><?= $data['numero'] ?></td>
                             <td><?= $data['comp'] ?></td>
@@ -69,4 +75,6 @@ mysqli_close($conn);
     </div>
 </section>
 
-<?php require_once("../footer.php") ?>
+<?php 
+mysqli_close($conn);
+require_once("../footer.php") ?>

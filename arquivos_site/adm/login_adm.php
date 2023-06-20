@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($_POST['email']) || empty($_POST['senha'])) {
 
-        $login_err = "Usário ou senha invalidos";
+        $login_err = "Usário ou senha inválidos";
     } else {
         $email = $_POST['email'];
         $password = $_POST['senha'];
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data = mysqli_fetch_array($result);
 
         if (!$data) {
-            $login_err = "ususario não encontrado";
+            $login_err = "Usuário não encontrado";
         } else {
 
 
@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['email'] = $email;
                 mysqli_close($conn);
 
-                header("Location: admin.php");
+                header("Location: pedidos.php");
             } else {
 
-                $login_err = "usuário não encontrado";
+                $login_err = "Usuário não encontrado";
             }
         }
     }
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <main><br />
         <span><?= $login_err ?></span>
-        <h2>Login Administrativo</h2>
+        <h2>Login Usuário Administrativo</h2>
         <p>Por favor insira os dados pra realizar o Login</p>
         <hr>
         <section class="form_adm">
@@ -60,7 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label>Senha:</label>
                     <input type="password" name="senha" required class="form-control">
                     <span class="invalid-feedback"></span>
-                </div><br />
+                </div>
+                <br>
+                <p>Login de cliente!<a href="../login.php"> Clique aqui!</a>.</p>
+                <br />
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Login">
                 </div>
@@ -68,16 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
 
         </section>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-    </main>
+      
 
   
     <script src="../bootstrap-5.3.0-alpha3-dist/js/bootstrap.bundle.min.js"></script>
 
     <?php require("../footer.php"); ?>
-</body>
-
-</html>

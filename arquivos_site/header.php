@@ -51,7 +51,7 @@ if (isset($_GET['limpar'])) {
                         <a class="nav-link fw-bolder " aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bolder fw-bolder" href="sobre_nos.php"> Nossa história</a>
+                        <a class="nav-link fw-bolder fw-bolder" href="nossa_historia.php"> Nossa história</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bolder" href="contato.php">Contato</a>
@@ -107,5 +107,5 @@ if (isset($_GET['limpar'])) {
             <?php } ?>
         </ul>
     </nav>
-    <main>
+    <main class="main-content">
         

@@ -7,25 +7,26 @@ if (!isset($_SESSION['login_adm']) || $_SESSION['login_adm'] != true) {
     header("Location: login_adm.php");
 }
 
-$sql ="SELECT pg.pag_id, p.ped_num,tp.nome modo,pg.valor,p.ped_data, c.nome,pg.cancelado, e.logradouro, e.numero ";
+$sql = "SELECT pg.pag_id, p.ped_num,tp.nome modo,pg.valor,p.ped_data, c.nome,pg.cancelado, e.logradouro, e.numero ";
 $sql .= " FROM pagamento pg inner join pedido p on pg.ped_num = p.ped_num ";
 $sql .= "inner join cliente c on c.cli_id = p.cliente_cli_id ";
 $sql .= " inner join tipo_pagamento tp on p.tipo_pagamento_cod = tp.cod ";
 $sql .= "inner join endereco e on e.cliente_cli_id = c.cli_id where e.end_cod = p.cod_entrega";
 
-$result = $conn->query($sql);
-
-
-mysqli_close($conn);
+$result = $conn->query($sql); 
 ?>
+
 <section style="width: 100%;">
 
 
     <div class="col-12 m-auto">
         <h1>Pagamentos</h1>
         <hr>
+        <?php
+        require_once("./filtroPagamento.php")
+        ?>
         <br>
-        <div class="col-8 m-auto text-center"> <!-- temos que centrarlizar direito -->
+        <div class="col-8 m-auto text-center" style="width: 90%;"> <!-- temos que centrarlizar direito -->
             <table class="table table-bordered">
                 <thead>
                     <tr class="">
@@ -48,23 +49,23 @@ mysqli_close($conn);
 
 
                     ?>
-                   
-                        <tr class="<?=($data['cancelado'] == 1) ?'pg-cancelado':'pg-pago'?>">
+
+                        <tr class="<?= ($data['cancelado'] == 1) ? 'pg-cancelado' : 'pg-pago' ?>">
                             <th scope="row"><?= $data['pag_id'] ?></th>
                             <td><?= $data['ped_num'] ?></td>
                             <td><?= $data['modo'] ?></td>
-                            <td> R$ <?= number_format($data['valor'],2,',','.') ?></td>
+                            <td> R$ <?= number_format($data['valor'], 2, ',', '.') ?></td>
                             <td><?= date("d/m/Y", strtotime($data['ped_data'])) ?></td>
                             <td><?= $data['nome'] ?></td>
-                            <td ><?= $data['logradouro'] ?></td>
-                            <td ><?= $data['numero'] ?></td>
-                            <td ><?= ($data['cancelado'] == 1) ?'Cancelado':'Pago' ?></td>
-                            
-                           
+                            <td><?= $data['logradouro'] ?></td>
+                            <td><?= $data['numero'] ?></td>
+                            <td><?= ($data['cancelado'] == 1) ? 'Cancelado' : 'Pago' ?></td>
+
+
                         </tr>
-                        
-                        <?php } ?>
-                       
+
+                    <?php } ?>
+
 
                 </tbody>
             </table>
@@ -72,4 +73,7 @@ mysqli_close($conn);
     </div>
 </section>
 
-<?php require_once("../footer.php") ?>
+<?php
+mysqli_close($conn);
+
+require_once("../footer.php") ?>

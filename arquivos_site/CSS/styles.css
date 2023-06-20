@@ -1,59 +1,60 @@
-
-body{
+body {
     font-family: 'Roboto';
     font-size: 0.95rem;
 
 }
 
-section{
-   
-    font-family: 'Roboto','Calibri';
+section {
+
+    font-family: 'Roboto', 'Calibri';
     font-size: 0.9rem;
 }
-main{
-   
-    width: 99,999%;
+
+main {
+
+    width: 99, 999%;
     margin-left: auto;
     margin-right: auto;
 }
-nav{
-  
-  
+
+nav {}
+
+hr {
+    color: #bea200;
+
 }
 
-hr{
-    color: #bea200;
-    
-}
 .centralizar {
 
-   width:100%;
-   margin-left: auto;
-   margin-right: auto;
-   
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
 }
+
 .demo {
     margin-bottom: 12px;
-   
+
 }
-.ajuste-center{
-   width: 99.999%;
-  
-  margin-left: auto;
-  margin-right: auto
+
+.ajuste-center {
+    width: 99.999%;
+
+    margin-left: auto;
+    margin-right: auto
 }
 
 
 .img_banner {
 
-       max-width: 100%;
-       width: 1920px;
-       height: 600px;
-       margin-bottom: 9px;
-        margin-top: -90px; 
-       object-fit: cover;
-   
-   }
+    max-width: 100%;
+    width: 1920px;
+    height: 600px;
+    margin-bottom: 9px;
+    margin-top: -90px;
+    object-fit: cover;
+
+}
 
 
 
@@ -98,10 +99,10 @@ a .reset_decor:hover {
 
 
 .img_card {
-   
+
     max-height: 180px;
     align-self: center;
-    width: 240px;
+    width: 260px;
     height: 254px;
     border-radius: 8px;
     object-fit: cover;
@@ -194,11 +195,14 @@ a .reset_decor:hover {
 }
 
 .container_card {
-    width: 80.7%;
+    display: flex;
+    width: 1189px;
+
     flex-direction: row;
+    flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
-
+    align-items: center;
     justify-content: start;
 
 
@@ -224,13 +228,14 @@ a .reset_decor:hover {
 .text-descr {
     margin-top: 8px;
     height: 50px;
-
+    text-align: center;
     margin-bottom: 5px;
 
 
 }
-.text-saiba{
-   
+
+.text-saiba {
+
     font-size: 0.8rem;
     margin: 0;
     padding: 0;
@@ -249,6 +254,8 @@ a .reset_decor:hover {
 }
 
 .card-produto {
+    width: 280px;
+    height: 280px;
     background-color: #fcfcfc;
     box-shadow: 0px 4px 4px #00000040;
     border-radius: 8px 8px 0px 0px;
@@ -269,3 +276,4 @@ a .reset_decor:hover {
     color: #1a0be9;
     font-weight: 400;
 }
+

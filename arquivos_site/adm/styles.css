@@ -38,7 +38,7 @@ section{
 
 }
 
-#container,.container_rel {
+#container {
    /*  width: 80%; */
     aspect-ratio: 4/1;
     padding: 40px 0;

@@ -43,7 +43,7 @@ require_once('filtro.php');
 <section class="container_card">
 
     <!-- Vertically centered scrollable modal -->
-    <div class="text-end">
+    <div class="text-end" style="width: 99%;">
 
         <button type="button" class="btn btn-link text-saiba " data-bs-toggle="modal" data-bs-target="#modal1">
             <?=isset($_SESSION['carrinho'])?'Carrinho':''?> 
@@ -106,7 +106,7 @@ require_once('filtro.php');
             //print_r($data);
         ?>
             <br />
-            <div class="card m-2 card-produto" style="width: 16rem;height: 390px; ">
+            <div class="card m-2 card-produto" style="height: 390px; ">
                 <?php
                 if ($data['promo'] > 0) {
                     $preco =  $data['preco'] - ($data['preco']*$data['desconto']/100);
@@ -149,7 +149,7 @@ require_once('filtro.php');
 <?php if (isset($_SESSION['carrinho'])) { ?>
     <section class="container_card">
 
-        <div class="text">
+        <div class="text" style="width: 100%;">
             <h4 class="text-center">ITENS ADICIONADOS</h4>
         </div>
 
@@ -167,7 +167,7 @@ require_once('filtro.php');
             <tbody>
                 <?php
 
-                //  print_r($_SESSION['carrinho']);
+                 // print_r($_SESSION['carrinho']);
 
                 foreach ($_SESSION['carrinho'] as $chave => $produto) {
 
@@ -178,14 +178,14 @@ require_once('filtro.php');
                             <td><?= $produto['nomeprod'] ?></td>
                             <td><?= $produto['qtd'] ?></td>
                             <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
-                            <td><?=($produto['desconto']>0)? $produto['desconto'].'%':'' ?></td>
+                            <td><?=(isset($produto['desconto']))? $produto['desconto'].'%':'' ?></td>
                             <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
                         </tr>
                 <?php }
                 } ?>
             </tbody>
         </table>
-        <form method="post" action="verificar_pedido.php" class="text-center">
+        <form method="post" action="verificar_pedido.php" class="text-center" style="width: 100%;">
             <input type="submit" class="btn btn-outline-success" value="Finalizar Pedido" />
         </form>
     </section>

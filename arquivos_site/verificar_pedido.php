@@ -81,8 +81,9 @@ if (isset($_POST['finalizar'])) {
 
 }
  if (isset($_SESSION['carrinho'])) { ?>
-    <section class="container_card">
-        <form method="post" action="verificar_pedido.php" class="text-center">
+    <section class="container_card ">
+        <form method="post" action="verificar_pedido.php" style="width: 80%;"
+         class="text-center mx-auto">
             <div class="text">
                 <h4 class="text-center">FINALIZAR PEDIDO</h4>
             </div>

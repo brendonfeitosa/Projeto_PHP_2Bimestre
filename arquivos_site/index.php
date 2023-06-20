@@ -49,12 +49,12 @@ $result = $conn->query($sql);
 </div>
 <section class="container_card">
     <hr>
-    <div class="row text-center item-container">
+   <!--  <div class="row text-center item-container"> -->
         <?php
         while ($data = mysqli_fetch_array($result)) { ?>
 
 
-            <div class="card m-2 card-menu card-produto" style="width:16rem; padding:2px; ">
+            <div class="card m-2  card-produto">
                 <strong class="card-text1"><?= $data['nome'] ?> </strong>
 
                 <img src="<?= $data['image_url'] ?>" class="img_card" alt="...">
@@ -109,7 +109,7 @@ $result = $conn->query($sql);
             </div>
 
         <?php } ?>
-    </div>
+   <!--  </div> -->
 
 
 </section>
@@ -131,7 +131,7 @@ $result = $conn->query($sql);
         while ($data = mysqli_fetch_array($result)) { ?>
 
 
-            <div class="card m-2 card-menu card-produto" style="width:16rem; padding:2px; ">
+            <div class="card m-2  card-produto">
                 <strong class="card-text1"><?= $data['nome'] ?> </strong>
 
                 <img src="<?= $data['image_url'] ?>" class="img_card" alt="<?=$data['nome']?>">

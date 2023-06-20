@@ -1,6 +1,9 @@
 <?php
 require("header.inc.php");
 require_once("../utils/connection.php");
+if (!isset($_SESSION['login_adm']) || $_SESSION['login_adm'] != true){
+    header("Location: login_adm.php");
+}
 
 $email = "";
 $nome = "";
@@ -58,7 +61,7 @@ mysqli_close($conn);
 ?>
 
 <div class="container-sm">
-    <h2>Registro</h2>
+    <h2>Registro de Usuário Administrador</h2>
     <p>Por favor, preencha os campos do formulário para criar a sua conta.</p>
     <hr>
     <div class="wrapper">
@@ -71,22 +74,22 @@ mysqli_close($conn);
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group">
                     <label>Usuário:</label>
-                    <input type="text" name="nome" class="form-control " value="<?=$nome?>">
+                    <input type="text" name="nome" class="form-control " placeholder="Ex.: João da Silva" value="<?=$nome?>">
                     <span class="invalid-feedback"></span>
                 </div>
                 <div class="form-group">
                     <label>Email:</label>
-                    <input type="text" name="email" class="form-control " value="<?=$email?>">
+                    <input type="text" name="email" class="form-control " placeholder="Ex.: joao.silva@teste.com" value="<?=$email?>">
                     <span class="invalid-feedback"></span>
                 </div>
                 <div class="form-group">
                     <label>Senha</label>
-                    <input type="password" name="senha" class="form-control " value="">
+                    <input type="password" name="senha" class="form-control" placeholder="****" value="">
                     <span class="invalid-feedback"></span>
                 </div>
                 <div class="form-group">
                     <label>Confirmação da senha</label>
-                    <input type="password" name="confirm_senha" class="form-control " value="">
+                    <input type="password" name="confirm_senha" placeholder="****" class="form-control " value="">
                     <span class="invalid-feedback"></span>
                 </div>
                 <div class="form-group">
@@ -94,7 +97,6 @@ mysqli_close($conn);
                     <input type="submit" class="btn btn-primary" value="Enviar">
                     <input type="reset" class="btn btn-secondary ml-2" value="Limpar">
                 </div>
-                <p>Já possui uma conta? <a href="login.php">Faça o seu login aqui</a>.</p>
             </form>
         </section>
     </div>

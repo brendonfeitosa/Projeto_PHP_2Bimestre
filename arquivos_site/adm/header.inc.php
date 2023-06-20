@@ -6,18 +6,17 @@ require_once("../utils/connection.php");
 
 <!doctype html>
 <html lang="pt-br">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resto</title>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-   
-    <link href="../bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="./styles.css"/>
-    <link rel="stylesheet" href="../CSS/styles.css"/>
-
-    <script>
+    <!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"> -->
+    <link href="../bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+   <!--  <link rel="stylesheet" href="../CSS/styles.css">
+ -->
+ <script>
         const myModal = document.getElementById('myModal');
         const myInput = document.getElementById('myInput');
 
@@ -29,7 +28,7 @@ require_once("../utils/connection.php");
 </head>
 
 <body>
-    <main>
+    <main class="main-content">
 
         <header>
 
@@ -54,10 +53,10 @@ require_once("../utils/connection.php");
                         <a class="nav-link " href="cliente.php">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ">Usuários</a>
+                        <a href="register.php" class="nav-link ">Cadastrar Usuários</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ">Release</a>
+                        <a href="./release.php" class="nav-link ">Release</a>
                     </li>
                     <li class="nav-item">
                         <a href="logout.php" class="nav-link ">Sair</a>

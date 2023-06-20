@@ -10,9 +10,6 @@ if(isset($_GET['id'])){
     $id = $_GET['id'];
 	
 
-    //echo $table." ".$id;
-	require_once('../utils/connetion.php');
-
 	if($table == 0){
 		$field = "tipo_cod";
 		$table = "tipo_produto";

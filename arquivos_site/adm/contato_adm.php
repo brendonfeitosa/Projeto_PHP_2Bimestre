@@ -1,5 +1,8 @@
 <?php require_once("header.inc.php") ;
-
+if (!isset($_SESSION['login_adm']) || $_SESSION['login_adm'] != true) {
+    header("Location: login_adm.php");
+   
+}
 
 
 $sql = "SELECT * FROM contato";
